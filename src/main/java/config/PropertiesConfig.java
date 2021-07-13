@@ -1,5 +1,3 @@
-package config;
-
 /**
  * Copyright (c) 2021 Fundacion Jala.
  * This software is the confidential and proprietary information of Fundacion Jala
@@ -7,6 +5,8 @@ package config;
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
+
+package config;
 
 import org.aeonbits.owner.Config;
 
@@ -16,10 +16,10 @@ import org.aeonbits.owner.Config;
 @Config.Sources({
         "classpath:general.properties"
 })
-public interface PropertiesConfig extends Config{
+public interface PropertiesConfig extends Config {
 
     @Config.Key("base_url")
-    String base_url();
+    String baseUrl();
 
     @Config.Key("username")
     String username();
@@ -27,6 +27,15 @@ public interface PropertiesConfig extends Config{
     @Config.Key("password")
     String password();
 
-    @Config.Key("chrome_driver_path")
-    String chrome_driver_path();
+    @Config.Key("driver_path")
+    String driverPath();
+
+    @Config.Key("browser")
+    String browser();
+
+    @Config.Key("implicit_wait_time")
+    int implicitWaitTime();
+
+    @Config.Key("explicit_wait_time")
+    int explicitWaitTime();
 }

@@ -1,10 +1,3 @@
-package salesforce.gui.page_object.pages;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-
 /**
  * Copyright (c) 2021 Fundacion Jala.
  * This software is the confidential and proprietary information of Fundacion Jala
@@ -13,30 +6,55 @@ import org.openqa.selenium.support.PageFactory;
  * license agreement you entered into with Fundacion Jala
  */
 
-public class IndividualListPage {
+package salesforce.gui.page_object.pages;
 
-    WebDriver driver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class IndividualListPage extends BasePage {
+
     @FindBy(css = "div[title=\"Delete\"]")
-    WebElement deleteIndividualButton;
+    private WebElement deleteIndividualButton;
 
     @FindBy(css = "button[title=\"Delete\"] span")
-    WebElement confirmDeleteIndividualButton;
+    private WebElement confirmDeleteIndividualButton;
 
     @FindBy(css = "span.triggerLinkText")
-    WebElement recentlyViewedSpan;
+    private WebElement recentlyViewedSpan;
 
-    public IndividualListPage(WebDriver webDriver) {
-        this.driver = webDriver;
-        PageFactory.initElements(driver, this);
+    /**
+     * Constructor for the IndividualListPage.
+     */
+    public IndividualListPage() {
+        PageFactory.initElements(super.getDriver(), this);
     }
 
+    /**
+     * Deletes the created individual.
+     *
+     * @return a HomePage instance.
+     */
     public HomePage deleteCreatedIndividual() {
         deleteIndividualButton.click();
         confirmDeleteIndividualButton.click();
-        return new HomePage(driver);
+        return new HomePage();
     }
 
+    /**
+     * Checks if the view list span is visible.
+     *
+     * @return boolean
+     */
     public boolean recentlyViewedSpanVisible() {
         return recentlyViewedSpan.isDisplayed();
+    }
+
+    /**
+     * Method to wait for a page to load.
+     */
+    @Override
+    protected void waitForPageToLoad() {
+
     }
 }

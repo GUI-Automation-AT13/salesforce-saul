@@ -13,14 +13,15 @@ import org.aeonbits.owner.ConfigCache;
 /**
  * Singleton for a GeneralConfig class.
  */
-public class ConfigManager {
+public final class ConfigManager {
 
     private ConfigManager() {
+
     }
 
     /**
      * Returns an instance of the GeneralConfig class.
-     * @return
+     * @return a PropertiesConfig instance
      */
     public static PropertiesConfig getConfiguration() {
         return ConfigCache.getOrCreate(PropertiesConfig.class);

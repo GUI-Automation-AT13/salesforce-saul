@@ -8,39 +8,61 @@
 
 package salesforce.gui.page_object.pages;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage {
-
-    WebDriver driver;
+public class LoginPage extends BasePage {
 
     @FindBy(css = ".username")
-    WebElement usernameTextbox;
+    private WebElement usernameTextbox;
 
     @FindBy(css = ".password")
-    WebElement passwordTextbox;
+    private WebElement passwordTextbox;
 
     @FindBy(id = "Login")
-    WebElement loginButton;
+    private WebElement loginButton;
 
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+    /**
+     * Constructor for LoginPage.
+     */
+    public LoginPage() {
+        PageFactory.initElements(super.getDriver(), this);
     }
 
-    public void setUsernameTextbox(String username) {
+    /**
+     * Sets the given username to the username textbox.
+     *
+     * @param username
+     */
+    public void setUsernameTextbox(final String username) {
         usernameTextbox.sendKeys(username);
     }
 
-    public void setPasswordTextbox(String password) {
+    /**
+     * Sets the given lastname to the lastname textbox.
+     *
+     * @param password
+     */
+    public void setPasswordTextbox(final String password) {
         passwordTextbox.sendKeys(password);
     }
 
+    /**
+     * Clicks on the login button.
+     *
+     * @return HomePage
+     */
     public HomePage login() {
         loginButton.click();
-        return new HomePage(driver);
+        return new HomePage();
+    }
+
+    /**
+     * Method to wait for a page to load.
+     */
+    @Override
+    protected void waitForPageToLoad() {
+
     }
 }
