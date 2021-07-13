@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '2.41.0'
+    implementation 'org.testng:testng:7.4.0'
+    implementation group: 'org.aeonbits.owner', name: 'owner-java8', version: '1.0.12'
+}
+
+test {
+    useTestNG()
+}
