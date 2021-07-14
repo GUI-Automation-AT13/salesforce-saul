@@ -38,4 +38,4 @@ checkstyleTest {
     source = 'src/test/java'
 }
 
-//test.finalizedBy("checkstyleMain")
+test.finalizedBy("checkstyleMain")
