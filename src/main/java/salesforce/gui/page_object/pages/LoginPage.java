@@ -8,39 +8,56 @@
 
 package salesforce.gui.page_object.pages;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class LoginPage {
+public class LoginPage extends BasePage {
 
-    WebDriver driver;
+    private By usernameTextbox = By.className("username");
+    private By passwordTextbox = By.className("password");
+    private By loginButton = By.id("Login");
 
-    @FindBy(css = ".username")
-    WebElement usernameTextbox;
-
-    @FindBy(css = ".password")
-    WebElement passwordTextbox;
-
-    @FindBy(id = "Login")
-    WebElement loginButton;
-
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+    /**
+     * Constructor for LoginPage.
+     */
+    public LoginPage() {
+        PageFactory.initElements(super.getDriver(), this);
     }
 
-    public void setUsernameTextbox(String username) {
-        usernameTextbox.sendKeys(username);
+    /**
+     * Sets the given username to the username textbox.
+     *
+     * @param username
+     */
+    public void setUsernameTextbox(final String username) {
+        getDriver().findElement(usernameTextbox).sendKeys(username);
     }
 
-    public void setPasswordTextbox(String password) {
-        passwordTextbox.sendKeys(password);
+    /**
+     * Sets the given password to the password textbox.
+     *
+     * @param password
+     */
+    public void setPasswordTextbox(final String password) {
+        getDriver().findElement(passwordTextbox).sendKeys(password);
     }
 
+    /**
+     * Clicks on the login button.
+     *
+     * @return HomePage
+     */
     public HomePage login() {
-        loginButton.click();
-        return new HomePage(driver);
+        getDriver().findElement(loginButton).click();
+        return new HomePage();
+    }
+
+    /**
+     * Method to wait for a page to load.
+     */
+    @Override
+    protected void waitForPageToLoad() {
+        getWait().until(ExpectedConditions.presenceOfElementLocated(loginButton));
     }
 }

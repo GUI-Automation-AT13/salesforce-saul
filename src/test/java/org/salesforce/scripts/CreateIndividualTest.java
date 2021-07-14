@@ -17,20 +17,16 @@ import salesforce.gui.page_object.pages.IndividualFormPage;
 import salesforce.gui.page_object.pages.LoginPage;
 import salesforce.gui.page_object.views.Views;
 
-import java.util.Map;
+public class CreateIndividualTest extends Basetest {
 
-public class CreateIndividualTest extends TestBase {
-
-    private Map<String, Object> vars;
     private PropertiesConfig propertiesConfig;
 
     public void login() {
         propertiesConfig = ConfigManager.getConfiguration();
-        HomePage homePage = new HomePage(driver);
-        LoginPage loginpage = new LoginPage(driver);
+        LoginPage loginpage = new LoginPage();
         loginpage.setUsernameTextbox(propertiesConfig.username());
         loginpage.setPasswordTextbox(propertiesConfig.password());
-        homePage = loginpage.login();
+        HomePage homePage = loginpage.login();
         Assert.assertTrue(homePage.labelObjectManageriIsVisible());
     }
 
@@ -38,7 +34,7 @@ public class CreateIndividualTest extends TestBase {
     public void createIndividualWithLastname() {
         login();
         driver.get(Views.CREATE_INDIVIDUAL.get());
-        IndividualFormPage individualFormPage = new IndividualFormPage(driver);
+        IndividualFormPage individualFormPage = new IndividualFormPage();
         individualFormPage.setLastnameTextbox("Paul");
         individualFormPage.save();
         Assert.assertTrue(individualFormPage.createdIndividualLabelVisibility());

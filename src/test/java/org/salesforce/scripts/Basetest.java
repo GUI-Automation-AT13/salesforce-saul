@@ -10,37 +10,29 @@ package org.salesforce.scripts;
 
 import config.ConfigManager;
 import config.PropertiesConfig;
+import core.ChromeBrowser;
+import core.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import salesforce.gui.page_object.pages.IndividualListPage;
 
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
+public class Basetest {
 
-public class TestBase {
-
-    public static WebDriver driver;
+    protected static WebDriver driver;
 
     @BeforeSuite
-    public void initializeWebDriver() throws IOException {
+    public void setUp() {
         PropertiesConfig propertiesConfig = ConfigManager.getConfiguration();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--disable-notifications");
-        System.setProperty("webdriver.chrome.driver", propertiesConfig.chrome_driver_path());
-        driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get(propertiesConfig.base_url());
+        driver = WebDriverManager.getDriver(new ChromeBrowser());
+        driver.get(propertiesConfig.baseUrl());
     }
 
     @AfterMethod
     public void deleteCreatedIndividual() {
-        IndividualListPage individualListPage = new IndividualListPage(driver);
+        IndividualListPage individualListPage = new IndividualListPage();
         individualListPage.deleteCreatedIndividual();
         Assert.assertTrue(individualListPage.recentlyViewedSpanVisible());
     }
