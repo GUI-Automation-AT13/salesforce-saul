@@ -8,20 +8,15 @@
 
 package salesforce.gui.page_object.pages;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class IndividualListPage extends BasePage {
 
-    @FindBy(css = "div[title=\"Delete\"]")
-    private WebElement deleteIndividualButton;
-
-    @FindBy(css = "button[title=\"Delete\"] span")
-    private WebElement confirmDeleteIndividualButton;
-
-    @FindBy(css = "span.triggerLinkText")
-    private WebElement recentlyViewedSpan;
+    private By deleteIndividualButton = By.cssSelector("div[title=\"Delete\"]");
+    private By confirmDeleteIndividualButton = By.cssSelector("button[title=\"Delete\"] span");
+    private By recentlyViewedSpan = By.cssSelector("span.triggerLinkText");
 
     /**
      * Constructor for the IndividualListPage.
@@ -36,8 +31,8 @@ public class IndividualListPage extends BasePage {
      * @return a HomePage instance.
      */
     public HomePage deleteCreatedIndividual() {
-        deleteIndividualButton.click();
-        confirmDeleteIndividualButton.click();
+        getDriver().findElement(deleteIndividualButton).click();
+        getDriver().findElement(confirmDeleteIndividualButton).click();
         return new HomePage();
     }
 
@@ -47,7 +42,7 @@ public class IndividualListPage extends BasePage {
      * @return boolean
      */
     public boolean recentlyViewedSpanVisible() {
-        return recentlyViewedSpan.isDisplayed();
+        return getDriver().findElement(recentlyViewedSpan).isDisplayed();
     }
 
     /**
@@ -55,6 +50,6 @@ public class IndividualListPage extends BasePage {
      */
     @Override
     protected void waitForPageToLoad() {
-
+        getWait().until(ExpectedConditions.presenceOfElementLocated(deleteIndividualButton));
     }
 }

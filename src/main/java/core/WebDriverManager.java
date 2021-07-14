@@ -10,10 +10,6 @@ package core;
 
 import config.ConfigManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
@@ -27,34 +23,30 @@ public final class WebDriverManager {
     }
 
     /**
-     * Returns an instance of the WebDriverManager.
+     * Returns an instance of the WebDriver.
+     *
+     * @return WebDriver
+     * @param browser
+     */
+    public static WebDriver getDriver(final Browser browser) {
+        if (driver == null) {
+            System.setProperty(browser.getDriverName(),
+                    browser.getDriverPath());
+            driver = browser.getDriver();
+        }
+        driver.manage().window().maximize();
+        driver.manage().deleteAllCookies();
+        driver.manage().timeouts().implicitlyWait(ConfigManager.getConfiguration()
+                .implicitWaitTime(), TimeUnit.SECONDS);
+        return driver;
+    }
+
+    /**
+     * Overload method to get the driver instance.
      *
      * @return WebDriver
      */
     public static WebDriver getDriver() {
-        if (driver == null) {
-            if (ConfigManager.getConfiguration().browser().equals(Browser.CHROME.get())) {
-                ChromeOptions options = new ChromeOptions();
-                options.addArguments("--disable-notifications");
-                System.setProperty("webdriver.chrome.driver",
-                        ConfigManager.getConfiguration().driverPath());
-                driver = new ChromeDriver(options);
-                driver.manage().window().maximize();
-                driver.manage().timeouts().implicitlyWait(ConfigManager.getConfiguration()
-                        .implicitWaitTime(), TimeUnit.SECONDS);
-            } else {
-                FirefoxOptions options = new FirefoxOptions();
-                options.setCapability("marionette", false);
-                options.setCapability("marionette.actors.enabled", true);
-                System.setProperty("webdriver.gecko.driver",
-                        ConfigManager.getConfiguration().driverPath());
-                driver = new FirefoxDriver();
-                driver.manage().window().maximize();
-                driver.manage().deleteAllCookies();
-                driver.manage().timeouts().implicitlyWait(ConfigManager.getConfiguration()
-                        .implicitWaitTime(), TimeUnit.SECONDS);
-            }
-        }
         return driver;
     }
 

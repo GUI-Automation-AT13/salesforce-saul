@@ -8,16 +8,28 @@
 
 package core;
 
-public enum Browser {
-    CHROME("chrome"),
-    FIREFOX("firefox");
-    private String browser;
+import org.openqa.selenium.WebDriver;
 
-    Browser(final String browserOption) {
-        this.browser = browserOption;
-    }
+public interface Browser {
 
-    public String get() {
-        return browser;
-    }
+    /**
+     * Returns the driver name.
+     *
+     * @return String
+     */
+    String getDriverName();
+
+    /**
+     * Returns the driver path.
+     *
+     * @return String
+     */
+    String getDriverPath();
+
+    /**
+     * Returns the driver instance.
+     *
+     * @return WebDriver
+     */
+    WebDriver getDriver();
 }

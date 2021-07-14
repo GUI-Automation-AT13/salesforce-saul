@@ -8,20 +8,15 @@
 
 package salesforce.gui.page_object.pages;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage {
 
-    @FindBy(css = ".username")
-    private WebElement usernameTextbox;
-
-    @FindBy(css = ".password")
-    private WebElement passwordTextbox;
-
-    @FindBy(id = "Login")
-    private WebElement loginButton;
+    private By usernameTextbox = By.className("username");
+    private By passwordTextbox = By.className("password");
+    private By loginButton = By.id("Login");
 
     /**
      * Constructor for LoginPage.
@@ -36,16 +31,16 @@ public class LoginPage extends BasePage {
      * @param username
      */
     public void setUsernameTextbox(final String username) {
-        usernameTextbox.sendKeys(username);
+        getDriver().findElement(usernameTextbox).sendKeys(username);
     }
 
     /**
-     * Sets the given lastname to the lastname textbox.
+     * Sets the given password to the password textbox.
      *
      * @param password
      */
     public void setPasswordTextbox(final String password) {
-        passwordTextbox.sendKeys(password);
+        getDriver().findElement(passwordTextbox).sendKeys(password);
     }
 
     /**
@@ -54,7 +49,7 @@ public class LoginPage extends BasePage {
      * @return HomePage
      */
     public HomePage login() {
-        loginButton.click();
+        getDriver().findElement(loginButton).click();
         return new HomePage();
     }
 
@@ -63,6 +58,6 @@ public class LoginPage extends BasePage {
      */
     @Override
     protected void waitForPageToLoad() {
-
+        getWait().until(ExpectedConditions.presenceOfElementLocated(loginButton));
     }
 }

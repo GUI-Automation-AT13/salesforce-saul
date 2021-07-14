@@ -10,6 +10,7 @@ package org.salesforce.scripts;
 
 import config.ConfigManager;
 import config.PropertiesConfig;
+import core.ChromeBrowser;
 import core.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -25,7 +26,7 @@ public class Basetest {
     @BeforeSuite
     public void setUp() {
         PropertiesConfig propertiesConfig = ConfigManager.getConfiguration();
-        driver = WebDriverManager.getDriver();
+        driver = WebDriverManager.getDriver(new ChromeBrowser());
         driver.get(propertiesConfig.baseUrl());
     }
 

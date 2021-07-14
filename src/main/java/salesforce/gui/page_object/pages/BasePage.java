@@ -15,15 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public abstract class BasePage {
 
     private WebDriver driver = WebDriverManager.getDriver();
-    private WebDriverWait wait;
-
-    /**
-     * Constructor for the BasePage.
-     */
-    public BasePage() {
-        wait = WebDriverManager.getDriverWait();
-        waitForPageToLoad();
-    }
+    private WebDriverWait wait = WebDriverManager.getDriverWait();
 
     /**
      * Method to wait for a page to load.

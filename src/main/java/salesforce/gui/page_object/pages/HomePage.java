@@ -8,20 +8,15 @@
 
 package salesforce.gui.page_object.pages;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class HomePage extends BasePage {
 
-    @FindBy(css = ".hasActions .title")
-    private WebElement labelObjectManager;
-
-    @FindBy(css = "css=div[title=\"Delete\"]")
-    private WebElement deleteIndividualButton;
-
-    @FindBy(css = "button[title=\"Delete\"] span")
-    private WebElement confirmDeleteIndividualButton;
+    private By labelObjectManager = By.cssSelector(".hasActions .title");
+    private By deleteIndividualButton = By.cssSelector("css=div[title=\"Delete\"]");
+    private By confirmDeleteIndividualButton = By.cssSelector("button[title=\"Delete\"] span");
 
     /**
      * Constructor for the HomePage class.
@@ -36,7 +31,7 @@ public class HomePage extends BasePage {
      * @return boolean.
      */
     public boolean labelObjectManageriIsVisible() {
-        return labelObjectManager.isDisplayed();
+        return getDriver().findElement(labelObjectManager).isDisplayed();
     }
 
     /**
@@ -45,8 +40,8 @@ public class HomePage extends BasePage {
      * @return HomePage
      */
     public HomePage deleteCreatedIndividual() {
-        deleteIndividualButton.click();
-        confirmDeleteIndividualButton.click();
+        getDriver().findElement(deleteIndividualButton).click();
+        getDriver().findElement(confirmDeleteIndividualButton).click();
         return new HomePage();
     }
 
@@ -55,6 +50,6 @@ public class HomePage extends BasePage {
      */
     @Override
     protected void waitForPageToLoad() {
-
+        getWait().until(ExpectedConditions.presenceOfElementLocated(deleteIndividualButton));
     }
 }

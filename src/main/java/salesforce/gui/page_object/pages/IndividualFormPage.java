@@ -8,77 +8,38 @@
 
 package salesforce.gui.page_object.pages;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class IndividualFormPage extends BasePage {
 
-    @FindBy(css = ".salutation a")
-    private WebElement salutationSelector;
-
-    @FindBy(xpath = "[title=\"Mr.\"]")
-    private WebElement mrOption;
-
-    @FindBy(xpath = "[title=\"Ms.\"]")
-    private WebElement msOption;
-
-    @FindBy(xpath = "[title=\"Mrs.\"]")
-    private WebElement mrsOption;
-
-    @FindBy(xpath = "[title=\"Dr.\"]")
-    private WebElement drOption;
-
-    @FindBy(xpath = "[title=\"Prof.\"]")
-    private WebElement profOption;
-
-    @FindBy(css = ".firstName")
-    private WebElement firstnameTextbox;
-
-    @FindBy(css = ".lastName")
-    private WebElement lastnameTextbox;
-
-    @FindBy(css = "input[class=' input']")
-    private WebElement birthdateDateField;
-
-    @FindBy(xpath = "//div[label[contains(.,\"Don't Process\")]]/input")
-    private WebElement dontProcessCheckbox;
-
-    @FindBy(xpath = "//div[label[contains(.,\"Don't Market\")]]/input")
-    private WebElement dontMarketCheckbox;
-
-    @FindBy(xpath = "//div[label[contains(.,\"Export Individual's Data\")]]/input")
-    private WebElement exportIndividualDataCheckbox;
-
-    @FindBy(xpath = "//div[label[contains(.,\"OK to Store PII Data Elsewhere\")]]/input")
-    private WebElement okToStorePiiDataCheckbox;
-
-    @FindBy(xpath = "//div[label[contains(.,\"Block Geolocation Tracking\")]]/input")
-    private WebElement blockGeolocationCheckbox;
-
-    @FindBy(xpath = "//div[label[contains(.,\"Don't Profile\")]]/input")
-    private WebElement dontProfileCheckbox;
-
-    @FindBy(xpath = "//div[label[contains(.,\"Don't Track\")]]/input")
-    private WebElement dontTrackCheckbox;
-
-    @FindBy(xpath = "//div[label[contains(.,\"Forget this Individual\")]]/input")
-    private WebElement forgetThisIndividualCheckbox;
-
-    @FindBy(xpath = "//div[span[span[contains(text(),'Age')]]]/div//a")
-    private WebElement individualAgeSelector;
-
-    @FindBy(xpath = "//a[contains(text(),\'13 or Older\')]")
-    private WebElement age13Option;
-
-    @FindBy(xpath = "//a[contains(text(),\'16 or Older\')]")
-    private WebElement age16Option;
-
-    @FindBy(css = "button[title=\"Save\"]")
-    private WebElement saveButton;
-
-    @FindBy(css = ".slds-page-header__title > .uiOutputText")
-    private WebElement createdIndividualLabel;
+    private By salutationSelector = By.cssSelector(".salutation a");
+    private By mrOption = By.cssSelector("[title=\"Mr.\"]");
+    private By msOption = By.cssSelector("[title=\"Ms.\"]");
+    private By mrsOption = By.cssSelector("[title=\"Mrs.\"]");
+    private By drOption = By.cssSelector("[title=\"Dr.\"]");
+    private By profOption = By.cssSelector("[title=\"Prof.\"]");
+    private By firstnameTextbox = By.cssSelector(".firstName");
+    private By lastnameTextbox = By.cssSelector(".lastName");
+    private By birthdateDateField = By.cssSelector("input[class=' input']");
+    private By dontProcessCheckbox = By.xpath("//div[label[contains(.,\"Don't Process\")]]/input");
+    private By dontMarketCheckbox = By.xpath("//div[label[contains(.,\"Don't Market\")]]/input");
+    private By exportIndividualDataCheckbox = By.xpath("//div[label[contains(.,\""
+            + "Export Individual's Data\")]]/input");
+    private By okToStorePiiDataCheckbox = By.xpath("//div[label[contains(.,\""
+            + "OK to Store PII Data Elsewhere\")]]/input");
+    private By blockGeolocationCheckbox = By.xpath("//div[label[contains(.,\""
+            + "Block Geolocation Tracking\")]]/input");
+    private By dontProfileCheckbox = By.xpath("//div[label[contains(.,\"Don't Profile\")]]/input");
+    private By dontTrackCheckbox = By.xpath("//div[label[contains(.,\"Don't Track\")]]/input");
+    private By forgetThisIndividualCheckbox = By.xpath("//div[label[contains(.,\""
+            + "Forget this Individual\")]]/input");
+    private By individualAgeSelector = By.xpath("//div[span[span[contains(text(),'Age')]]]/div//a");
+    private By age13Option = By.xpath("//a[contains(text(),\'13 or Older\')]");
+    private By age16Option = By.xpath("//a[contains(text(),\'16 or Older\')]");
+    private By saveButton = By.cssSelector("button[title=\"Save\"]");
+    private By createdIndividualLabel = By.cssSelector(".slds-page-header__title > .uiOutputText");
 
     /**
      * Constructor for WebDriver.
@@ -91,42 +52,42 @@ public class IndividualFormPage extends BasePage {
      * Clicks the saluatation selector.
      */
     public void selectSalutation() {
-        salutationSelector.click();
+        getDriver().findElement(salutationSelector).click();
     }
 
     /**
      * Clicks the Mr. option
      */
     public void selectMrOption() {
-        mrOption.click();
+        getDriver().findElement(mrOption).click();
     }
 
     /**
      * Clicks the Mrs. option
      */
     public void selectMrsOption() {
-        mrsOption.click();
+        getDriver().findElement(mrsOption).click();
     }
 
     /**
      * Clicks the Ms. option
      */
     public void selectMsOption() {
-        msOption.click();
+        getDriver().findElement(msOption).click();
     }
 
     /**
      * Clicks the Dr. option
      */
     public void selectDrOption() {
-        drOption.click();
+        getDriver().findElement(drOption).click();
     }
 
     /**
      * Clicks the Prof. option
      */
     public void selectProfOption() {
-        profOption.click();
+        getDriver().findElement(profOption).click();
     }
 
     /**
@@ -135,7 +96,7 @@ public class IndividualFormPage extends BasePage {
      * @param firstname
      */
     public void setFirstnameTextbox(final String firstname) {
-        firstnameTextbox.sendKeys(firstname);
+        getDriver().findElement(firstnameTextbox).sendKeys(firstname);
     }
 
     /**
@@ -144,7 +105,7 @@ public class IndividualFormPage extends BasePage {
      * @param lastname
      */
     public void setLastnameTextbox(final String lastname) {
-        lastnameTextbox.sendKeys(lastname);
+        getDriver().findElement(lastnameTextbox).sendKeys(lastname);
     }
 
     /**
@@ -153,91 +114,91 @@ public class IndividualFormPage extends BasePage {
      * @param date
      */
     public void setBirthdateDateField(final String date) {
-        birthdateDateField.sendKeys(date);
+        getDriver().findElement(birthdateDateField).sendKeys(date);
     }
 
     /**
      * Clicks on the don't process checkbox.
      */
     public void checkDontProcessCheckbox() {
-        dontProcessCheckbox.click();
+        getDriver().findElement(dontProcessCheckbox).click();
     }
 
     /**
      * Clicks on the don't market checkbox.
      */
     public void checkDontMarketCheckbox() {
-        dontMarketCheckbox.click();
+        getDriver().findElement(dontMarketCheckbox).click();
     }
 
     /**
      * Clicks on the ExportIndividualData checkbox.
      */
     public void checkExportIndividualDataCheckbox() {
-        exportIndividualDataCheckbox.click();
+        getDriver().findElement(exportIndividualDataCheckbox).click();
     }
 
     /**
      * Clicks on the OkToStorePiiData checkbox.
      */
     public void checkOkToStorePiiDataCheckbox() {
-        okToStorePiiDataCheckbox.click();
+        getDriver().findElement(okToStorePiiDataCheckbox).click();
     }
 
     /**
      * Clicks on the BlockGeolocation checkbox.
      */
     public void checkBlockGeolocationCheckbox() {
-        blockGeolocationCheckbox.click();
+        getDriver().findElement(blockGeolocationCheckbox).click();
     }
 
     /**
      * Clicks on the Don'tProfile checkbox.
      */
     public void checkDontProfileCheckbox() {
-        dontProfileCheckbox.click();
+        getDriver().findElement(dontProfileCheckbox).click();
     }
 
     /**
      * Clicks on the Don'tTrackCheckbox.
      */
     public void checkDontTrackCheckbox() {
-        dontTrackCheckbox.click();
+        getDriver().findElement(dontTrackCheckbox).click();
     }
 
     /**
      * Clicks on the ForgetThisIndividual checkbox.
      */
     public void checkForgetThisIndividualCheckbox() {
-        forgetThisIndividualCheckbox.click();
+        getDriver().findElement(forgetThisIndividualCheckbox).click();
     }
 
     /**
      * Clicks on the IndividualAgeSelector.
      */
     public void selectIndividualAgeSelector() {
-        individualAgeSelector.click();
+        getDriver().findElement(individualAgeSelector).click();
     }
 
     /**
      * Clicks on the Age13 option.
      */
     public void selectAge13Option() {
-        age13Option.click();
+        getDriver().findElement(age13Option).click();
     }
 
     /**
      * Clicks on the Age16 option.
      */
     public void selectAge16Option() {
-        age16Option.click();
+        getDriver().findElement(age16Option).click();
     }
 
     /**
      * Clicks on the save button.
      */
     public void save() {
-        saveButton.click();
+        getDriver().findElement(saveButton).click();
     }
 
     /**
@@ -246,7 +207,7 @@ public class IndividualFormPage extends BasePage {
      * @return a boolean
      */
     public Boolean createdIndividualLabelVisibility() {
-        return createdIndividualLabel.isDisplayed();
+        return getDriver().findElement(createdIndividualLabel).isDisplayed();
     }
 
     /**
@@ -254,6 +215,6 @@ public class IndividualFormPage extends BasePage {
      */
     @Override
     protected void waitForPageToLoad() {
-
+        getWait().until(ExpectedConditions.presenceOfElementLocated(saveButton));
     }
 }
