@@ -13,7 +13,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.concurrent.TimeUnit;
 
 public final class WebDriverManager {
 
@@ -36,10 +39,20 @@ public final class WebDriverManager {
                 System.setProperty("webdriver.chrome.driver",
                         ConfigManager.getConfiguration().driverPath());
                 driver = new ChromeDriver(options);
+                driver.manage().window().maximize();
+                driver.manage().timeouts().implicitlyWait(ConfigManager.getConfiguration()
+                        .implicitWaitTime(), TimeUnit.SECONDS);
             } else {
-                driver = new FirefoxDriver();
-                System.setProperty("webdriver.firefox.driver",
+                FirefoxOptions options = new FirefoxOptions();
+                options.setCapability("marionette", false);
+                options.setCapability("marionette.actors.enabled", true);
+                System.setProperty("webdriver.gecko.driver",
                         ConfigManager.getConfiguration().driverPath());
+                driver = new FirefoxDriver();
+                driver.manage().window().maximize();
+                driver.manage().deleteAllCookies();
+                driver.manage().timeouts().implicitlyWait(ConfigManager.getConfiguration()
+                        .implicitWaitTime(), TimeUnit.SECONDS);
             }
         }
         return driver;

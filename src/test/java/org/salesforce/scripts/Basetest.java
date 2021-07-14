@@ -17,7 +17,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import salesforce.gui.page_object.pages.IndividualListPage;
-import java.util.concurrent.TimeUnit;
 
 public class Basetest {
 
@@ -27,9 +26,6 @@ public class Basetest {
     public void setUp() {
         PropertiesConfig propertiesConfig = ConfigManager.getConfiguration();
         driver = WebDriverManager.getDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(propertiesConfig.implicitWaitTime(),
-                TimeUnit.SECONDS);
         driver.get(propertiesConfig.baseUrl());
     }
 
