@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class HomePage extends BasePage {
 
+    public static final String URL = "/lightning/page/home";
     private By labelObjectManager = By.cssSelector(".hasActions .title");
     private By deleteIndividualButton = By.cssSelector("css=div[title=\"Delete\"]");
     private By confirmDeleteIndividualButton = By.cssSelector("button[title=\"Delete\"] span");
@@ -32,17 +33,6 @@ public class HomePage extends BasePage {
      */
     public boolean labelObjectManageriIsVisible() {
         return super.getDriver().findElement(labelObjectManager).isDisplayed();
-    }
-
-    /**
-     * Deletes the created individual element.
-     *
-     * @return HomePage
-     */
-    public HomePage deleteCreatedIndividual() {
-        super.getDriver().findElement(deleteIndividualButton).click();
-        super.getDriver().findElement(confirmDeleteIndividualButton).click();
-        return new HomePage();
     }
 
     /**

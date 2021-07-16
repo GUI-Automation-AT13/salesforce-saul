@@ -8,7 +8,9 @@
 
 package salesforce.gui.pages;
 
+import core.selenium.WebElementAction;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -31,7 +33,8 @@ public class LoginPage extends BasePage {
      * @param username
      */
     public void setUsernameTextbox(final String username) {
-        super.getDriver().findElement(usernameTextbox).sendKeys(username);
+        WebElement webElement = getDriver().findElement(usernameTextbox);
+        getWebElementAction().setInputField(webElement, username);
     }
 
     /**
@@ -40,7 +43,8 @@ public class LoginPage extends BasePage {
      * @param password
      */
     public void setPasswordTextbox(final String password) {
-        super.getDriver().findElement(passwordTextbox).sendKeys(password);
+        WebElement webElement = getDriver().findElement(passwordTextbox);
+        getWebElementAction().setInputField(webElement, password);
     }
 
     /**

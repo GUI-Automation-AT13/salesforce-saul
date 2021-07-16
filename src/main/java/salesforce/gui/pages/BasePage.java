@@ -9,6 +9,7 @@
 package salesforce.gui.pages;
 
 import core.selenium.WebDriverManager;
+import core.selenium.WebElementAction;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -16,7 +17,7 @@ public abstract class BasePage {
 
     private WebDriver driver = WebDriverManager.getDriver();
     private WebDriverWait wait = WebDriverManager.getDriverWait();
-    private PageTransporter transporter = new PageTransporter();
+    private WebElementAction webElementAction = new WebElementAction();
 
     /**
      * Method to wait for a page to load.
@@ -39,5 +40,13 @@ public abstract class BasePage {
      */
     public WebDriverWait getWait() {
         return wait;
+    }
+
+    /**
+     * Returns the WebElementAction.
+     * @return WebElementAction
+     */
+    public WebElementAction getWebElementAction() {
+        return webElementAction;
     }
 }

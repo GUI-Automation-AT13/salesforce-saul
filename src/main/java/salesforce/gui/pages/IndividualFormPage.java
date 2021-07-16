@@ -9,6 +9,7 @@
 package salesforce.gui.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -52,42 +53,48 @@ public class IndividualFormPage extends BasePage {
      * Clicks the saluatation selector.
      */
     public void selectSalutation() {
-        super.getDriver().findElement(salutationSelector).click();
+        WebElement webElement = getDriver().findElement(salutationSelector);
+        getWebElementAction().clickOnElement(webElement);
     }
 
     /**
      * Clicks the Mr. option
      */
     public void selectMrOption() {
-        super.getDriver().findElement(mrOption).click();
+        WebElement webElement = getDriver().findElement(mrOption);
+        getWebElementAction().clickOnElement(webElement);
     }
 
     /**
      * Clicks the Mrs. option
      */
     public void selectMrsOption() {
-        super.getDriver().findElement(mrsOption).click();
+        WebElement webElement = getDriver().findElement(mrsOption);
+        getWebElementAction().clickOnElement(webElement);
     }
 
     /**
      * Clicks the Ms. option
      */
     public void selectMsOption() {
-        super.getDriver().findElement(msOption).click();
+        WebElement webElement = getDriver().findElement(msOption);
+        getWebElementAction().clickOnElement(webElement);
     }
 
     /**
      * Clicks the Dr. option
      */
     public void selectDrOption() {
-        super.getDriver().findElement(drOption).click();
+        WebElement webElement = getDriver().findElement(drOption);
+        getWebElementAction().clickOnElement(webElement);
     }
 
     /**
      * Clicks the Prof. option
      */
     public void selectProfOption() {
-        super.getDriver().findElement(profOption).click();
+        WebElement webElement = getDriver().findElement(profOption);
+        getWebElementAction().clickOnElement(webElement);
     }
 
     /**
@@ -96,7 +103,8 @@ public class IndividualFormPage extends BasePage {
      * @param firstname
      */
     public void setFirstnameTextbox(final String firstname) {
-        super.getDriver().findElement(firstnameTextbox).sendKeys(firstname);
+        WebElement webElement = getDriver().findElement(firstnameTextbox);
+        getWebElementAction().setInputField(webElement, firstname);
     }
 
     /**
@@ -105,7 +113,8 @@ public class IndividualFormPage extends BasePage {
      * @param lastname
      */
     public void setLastnameTextbox(final String lastname) {
-        super.getDriver().findElement(lastnameTextbox).sendKeys(lastname);
+        WebElement webElement = getDriver().findElement(lastnameTextbox);
+        getWebElementAction().setInputField(webElement, lastname);
     }
 
     /**
@@ -114,91 +123,104 @@ public class IndividualFormPage extends BasePage {
      * @param date
      */
     public void setBirthdateDateField(final String date) {
-        super.getDriver().findElement(birthdateDateField).sendKeys(date);
+        WebElement webElement = getDriver().findElement(birthdateDateField);
+        getWebElementAction().setInputField(webElement, date);
     }
 
     /**
      * Clicks on the don't process checkbox.
      */
     public void checkDontProcessCheckbox() {
-        super.getDriver().findElement(dontProcessCheckbox).click();
+        WebElement webElement = getDriver().findElement(dontProcessCheckbox);
+        getWebElementAction().clickOnElement(webElement);
     }
 
     /**
      * Clicks on the don't market checkbox.
      */
     public void checkDontMarketCheckbox() {
-        super.getDriver().findElement(dontMarketCheckbox).click();
+        WebElement webElement = getDriver().findElement(dontMarketCheckbox);
+        getWebElementAction().clickOnElement(webElement);
     }
 
     /**
      * Clicks on the ExportIndividualData checkbox.
      */
     public void checkExportIndividualDataCheckbox() {
-        super.getDriver().findElement(exportIndividualDataCheckbox).click();
+        WebElement webElement = getDriver().findElement(exportIndividualDataCheckbox);
+        getWebElementAction().clickOnElement(webElement);
     }
 
     /**
      * Clicks on the OkToStorePiiData checkbox.
      */
     public void checkOkToStorePiiDataCheckbox() {
-        super.getDriver().findElement(okToStorePiiDataCheckbox).click();
+        WebElement webElement = getDriver().findElement(okToStorePiiDataCheckbox);
+        getWebElementAction().clickOnElement(webElement);
     }
 
     /**
      * Clicks on the BlockGeolocation checkbox.
      */
     public void checkBlockGeolocationCheckbox() {
-        super.getDriver().findElement(blockGeolocationCheckbox).click();
+        WebElement webElement = getDriver().findElement(blockGeolocationCheckbox);
+        getWebElementAction().clickOnElement(webElement);
     }
 
     /**
      * Clicks on the Don'tProfile checkbox.
      */
     public void checkDontProfileCheckbox() {
-        super.getDriver().findElement(dontProfileCheckbox).click();
+        WebElement webElement = getDriver().findElement(dontProfileCheckbox);
+        getWebElementAction().clickOnElement(webElement);
     }
 
     /**
      * Clicks on the Don'tTrackCheckbox.
      */
     public void checkDontTrackCheckbox() {
-        super.getDriver().findElement(dontTrackCheckbox).click();
+        WebElement webElement = getDriver().findElement(dontTrackCheckbox);
+        getWebElementAction().clickOnElement(webElement);
     }
 
     /**
      * Clicks on the ForgetThisIndividual checkbox.
      */
     public void checkForgetThisIndividualCheckbox() {
-        super.getDriver().findElement(forgetThisIndividualCheckbox).click();
+        WebElement webElement = getDriver().findElement(forgetThisIndividualCheckbox);
+        getWebElementAction().clickOnElement(webElement);
     }
 
     /**
      * Clicks on the IndividualAgeSelector.
      */
     public void selectIndividualAgeSelector() {
-        super.getDriver().findElement(individualAgeSelector).click();
+        WebElement webElement = getDriver().findElement(individualAgeSelector);
+        getWebElementAction().clickOnElement(webElement);
     }
 
     /**
      * Clicks on the Age13 option.
      */
     public void selectAge13Option() {
-        super.getDriver().findElement(age13Option).click();
+        WebElement webElement = getDriver().findElement(age13Option);
+        getWebElementAction().clickOnElement(webElement);
     }
 
     /**
      * Clicks on the Age16 option.
      */
     public void selectAge16Option() {
-        super.getDriver().findElement(age16Option).click();
+        WebElement webElement = getDriver().findElement(age16Option);
+        getWebElementAction().clickOnElement(webElement);
     }
 
     /**
      * Clicks on the save button.
      */
     public void save() {
-        super.getDriver().findElement(saveButton).click();
+        WebElement webElement = getDriver().findElement(saveButton);
+        getWebElementAction().clickOnElement(webElement);
     }
 
     /**
@@ -207,7 +229,11 @@ public class IndividualFormPage extends BasePage {
      * @return a boolean
      */
     public Boolean createdIndividualLabelVisibility() {
-        return super.getDriver().findElement(createdIndividualLabel).isDisplayed();
+        return getDriver().findElement(createdIndividualLabel).isDisplayed();
+    }
+
+    public String createdIndividualNameText() {
+        return getDriver().findElement(createdIndividualLabel).getText();
     }
 
     /**
@@ -215,6 +241,6 @@ public class IndividualFormPage extends BasePage {
      */
     @Override
     protected void waitForPageToLoad() {
-        super.getWait().until(ExpectedConditions.presenceOfElementLocated(saveButton));
+        getWait().until(ExpectedConditions.presenceOfElementLocated(saveButton));
     }
 }

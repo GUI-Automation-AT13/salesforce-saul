@@ -9,6 +9,7 @@
 package salesforce.gui.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -31,8 +32,10 @@ public class IndividualListPage extends BasePage {
      * @return a HomePage instance.
      */
     public HomePage deleteCreatedIndividual() {
-        super.getDriver().findElement(deleteIndividualButton).click();
-        super.getDriver().findElement(confirmDeleteIndividualButton).click();
+        WebElement webElement = getDriver().findElement(deleteIndividualButton);
+        getWebElementAction().clickOnElement(webElement);
+        WebElement webElement1 = getDriver().findElement(confirmDeleteIndividualButton);
+        getWebElementAction().clickOnElement(webElement1);
         return new HomePage();
     }
 
@@ -42,7 +45,7 @@ public class IndividualListPage extends BasePage {
      * @return boolean
      */
     public boolean recentlyViewedSpanVisible() {
-        return super.getDriver().findElement(recentlyViewedSpan).isDisplayed();
+        return getDriver().findElement(recentlyViewedSpan).isDisplayed();
     }
 
     /**
@@ -50,6 +53,6 @@ public class IndividualListPage extends BasePage {
      */
     @Override
     protected void waitForPageToLoad() {
-        super.getWait().until(ExpectedConditions.presenceOfElementLocated(deleteIndividualButton));
+        getWait().until(ExpectedConditions.presenceOfElementLocated(deleteIndividualButton));
     }
 }

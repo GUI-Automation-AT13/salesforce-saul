@@ -11,16 +11,24 @@ package org.salesforce.scripts.Individual;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import salesforce.gui.pages.IndividualFormPage;
-import salesforce.gui.views.Views;
 
 public class CreateIndividualTest extends Basetest {
 
     @Test(groups = "Create")
     public void createIndividualWithLastname() {
-        driver.get(Views.CREATE_INDIVIDUAL.get());
-        IndividualFormPage individualFormPage = new IndividualFormPage();
+        IndividualFormPage individualFormPage = pageTransporter.navigateToIndividualFormPage();
         individualFormPage.setLastnameTextbox("Paul");
         individualFormPage.save();
         Assert.assertTrue(individualFormPage.createdIndividualLabelVisibility());
+    }
+
+    @Test(groups = "Create")
+    public void createIndividualWithLastnameAndFirstname() {
+        IndividualFormPage individualFormPage = pageTransporter.navigateToIndividualFormPage();
+        individualFormPage.setLastnameTextbox("Paul");
+        individualFormPage.setFirstnameTextbox("Jake");
+        individualFormPage.save();
+        String expected = "Jake Paul";
+        Assert.assertEquals(individualFormPage.createdIndividualNameText(), expected);
     }
 }
