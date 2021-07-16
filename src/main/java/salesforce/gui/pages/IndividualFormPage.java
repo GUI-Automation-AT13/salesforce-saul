@@ -232,6 +232,10 @@ public class IndividualFormPage extends BasePage {
         return getDriver().findElement(createdIndividualLabel).isDisplayed();
     }
 
+    /**
+     * Returns the text of the IndividualName element.
+     * @return String
+     */
     public String createdIndividualNameText() {
         return getDriver().findElement(createdIndividualLabel).getText();
     }

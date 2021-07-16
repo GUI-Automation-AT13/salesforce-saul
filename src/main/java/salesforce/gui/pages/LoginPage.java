@@ -8,7 +8,6 @@
 
 package salesforce.gui.pages;
 
-import core.selenium.WebElementAction;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;

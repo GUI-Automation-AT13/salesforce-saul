@@ -13,7 +13,7 @@ import core.selenium.WebDriverManager;
 
 public final class PageTransporter {
 
-    private final String BASE_URL = ConfigManager.getConfiguration().baseUrl();
+    private final String baseUrl = ConfigManager.getConfiguration().baseUrl();
 
     /**
      * Navigates to a url.
@@ -24,15 +24,15 @@ public final class PageTransporter {
     }
 
     public LoginPage navigateToLoginPage() {
-        goToUrl(BASE_URL);
+        goToUrl(baseUrl);
         return new LoginPage();
     }
     /**
      * Navigates to the individual form page.
-     * @return
+     * @return IndividualFormPage
      */
     public IndividualFormPage navigateToIndividualFormPage() {
-        goToUrl(BASE_URL.concat("/lightning/o/Individual/new?count=1"));
+        goToUrl(baseUrl.concat("/lightning/o/Individual/new?count=1"));
         return new IndividualFormPage();
     }
 
@@ -42,7 +42,7 @@ public final class PageTransporter {
      * @param <T>
      * @return T
      */
-    public <T> T navigateTo(String page) {
+    public <T> T navigateTo(final String page) {
         return null;
     }
 }
