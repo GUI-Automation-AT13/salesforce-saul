@@ -10,7 +10,7 @@ package unit.tests.utils;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import utils.MyDate;
+import core.utils.MyDate;
 
 import java.util.Calendar;
 

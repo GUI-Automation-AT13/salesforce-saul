@@ -6,7 +6,7 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package salesforce.gui.page_object.views;
+package salesforce.gui.views;
 
 import config.ConfigManager;
 

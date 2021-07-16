@@ -6,7 +6,7 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package salesforce.gui.page_object.pages;
+package salesforce.gui.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
@@ -52,42 +52,42 @@ public class IndividualFormPage extends BasePage {
      * Clicks the saluatation selector.
      */
     public void selectSalutation() {
-        getDriver().findElement(salutationSelector).click();
+        super.getDriver().findElement(salutationSelector).click();
     }
 
     /**
      * Clicks the Mr. option
      */
     public void selectMrOption() {
-        getDriver().findElement(mrOption).click();
+        super.getDriver().findElement(mrOption).click();
     }
 
     /**
      * Clicks the Mrs. option
      */
     public void selectMrsOption() {
-        getDriver().findElement(mrsOption).click();
+        super.getDriver().findElement(mrsOption).click();
     }
 
     /**
      * Clicks the Ms. option
      */
     public void selectMsOption() {
-        getDriver().findElement(msOption).click();
+        super.getDriver().findElement(msOption).click();
     }
 
     /**
      * Clicks the Dr. option
      */
     public void selectDrOption() {
-        getDriver().findElement(drOption).click();
+        super.getDriver().findElement(drOption).click();
     }
 
     /**
      * Clicks the Prof. option
      */
     public void selectProfOption() {
-        getDriver().findElement(profOption).click();
+        super.getDriver().findElement(profOption).click();
     }
 
     /**
@@ -96,7 +96,7 @@ public class IndividualFormPage extends BasePage {
      * @param firstname
      */
     public void setFirstnameTextbox(final String firstname) {
-        getDriver().findElement(firstnameTextbox).sendKeys(firstname);
+        super.getDriver().findElement(firstnameTextbox).sendKeys(firstname);
     }
 
     /**
@@ -105,7 +105,7 @@ public class IndividualFormPage extends BasePage {
      * @param lastname
      */
     public void setLastnameTextbox(final String lastname) {
-        getDriver().findElement(lastnameTextbox).sendKeys(lastname);
+        super.getDriver().findElement(lastnameTextbox).sendKeys(lastname);
     }
 
     /**
@@ -114,91 +114,91 @@ public class IndividualFormPage extends BasePage {
      * @param date
      */
     public void setBirthdateDateField(final String date) {
-        getDriver().findElement(birthdateDateField).sendKeys(date);
+        super.getDriver().findElement(birthdateDateField).sendKeys(date);
     }
 
     /**
      * Clicks on the don't process checkbox.
      */
     public void checkDontProcessCheckbox() {
-        getDriver().findElement(dontProcessCheckbox).click();
+        super.getDriver().findElement(dontProcessCheckbox).click();
     }
 
     /**
      * Clicks on the don't market checkbox.
      */
     public void checkDontMarketCheckbox() {
-        getDriver().findElement(dontMarketCheckbox).click();
+        super.getDriver().findElement(dontMarketCheckbox).click();
     }
 
     /**
      * Clicks on the ExportIndividualData checkbox.
      */
     public void checkExportIndividualDataCheckbox() {
-        getDriver().findElement(exportIndividualDataCheckbox).click();
+        super.getDriver().findElement(exportIndividualDataCheckbox).click();
     }
 
     /**
      * Clicks on the OkToStorePiiData checkbox.
      */
     public void checkOkToStorePiiDataCheckbox() {
-        getDriver().findElement(okToStorePiiDataCheckbox).click();
+        super.getDriver().findElement(okToStorePiiDataCheckbox).click();
     }
 
     /**
      * Clicks on the BlockGeolocation checkbox.
      */
     public void checkBlockGeolocationCheckbox() {
-        getDriver().findElement(blockGeolocationCheckbox).click();
+        super.getDriver().findElement(blockGeolocationCheckbox).click();
     }
 
     /**
      * Clicks on the Don'tProfile checkbox.
      */
     public void checkDontProfileCheckbox() {
-        getDriver().findElement(dontProfileCheckbox).click();
+        super.getDriver().findElement(dontProfileCheckbox).click();
     }
 
     /**
      * Clicks on the Don'tTrackCheckbox.
      */
     public void checkDontTrackCheckbox() {
-        getDriver().findElement(dontTrackCheckbox).click();
+        super.getDriver().findElement(dontTrackCheckbox).click();
     }
 
     /**
      * Clicks on the ForgetThisIndividual checkbox.
      */
     public void checkForgetThisIndividualCheckbox() {
-        getDriver().findElement(forgetThisIndividualCheckbox).click();
+        super.getDriver().findElement(forgetThisIndividualCheckbox).click();
     }
 
     /**
      * Clicks on the IndividualAgeSelector.
      */
     public void selectIndividualAgeSelector() {
-        getDriver().findElement(individualAgeSelector).click();
+        super.getDriver().findElement(individualAgeSelector).click();
     }
 
     /**
      * Clicks on the Age13 option.
      */
     public void selectAge13Option() {
-        getDriver().findElement(age13Option).click();
+        super.getDriver().findElement(age13Option).click();
     }
 
     /**
      * Clicks on the Age16 option.
      */
     public void selectAge16Option() {
-        getDriver().findElement(age16Option).click();
+        super.getDriver().findElement(age16Option).click();
     }
 
     /**
      * Clicks on the save button.
      */
     public void save() {
-        getDriver().findElement(saveButton).click();
+        super.getDriver().findElement(saveButton).click();
     }
 
     /**
@@ -207,7 +207,7 @@ public class IndividualFormPage extends BasePage {
      * @return a boolean
      */
     public Boolean createdIndividualLabelVisibility() {
-        return getDriver().findElement(createdIndividualLabel).isDisplayed();
+        return super.getDriver().findElement(createdIndividualLabel).isDisplayed();
     }
 
     /**
@@ -215,6 +215,6 @@ public class IndividualFormPage extends BasePage {
      */
     @Override
     protected void waitForPageToLoad() {
-        getWait().until(ExpectedConditions.presenceOfElementLocated(saveButton));
+        super.getWait().until(ExpectedConditions.presenceOfElementLocated(saveButton));
     }
 }

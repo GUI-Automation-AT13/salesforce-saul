@@ -6,9 +6,9 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package salesforce.gui.page_object.pages;
+package salesforce.gui.pages;
 
-import core.WebDriverManager;
+import core.selenium.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -16,6 +16,7 @@ public abstract class BasePage {
 
     private WebDriver driver = WebDriverManager.getDriver();
     private WebDriverWait wait = WebDriverManager.getDriverWait();
+    private PageTransporter transporter = new PageTransporter();
 
     /**
      * Method to wait for a page to load.

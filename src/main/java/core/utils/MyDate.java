@@ -6,7 +6,7 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package utils;
+package core.utils;
 
 import java.time.LocalDate;
 import java.time.ZoneId;

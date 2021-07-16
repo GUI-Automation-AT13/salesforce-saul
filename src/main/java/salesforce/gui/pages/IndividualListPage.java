@@ -6,7 +6,7 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package salesforce.gui.page_object.pages;
+package salesforce.gui.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
@@ -31,8 +31,8 @@ public class IndividualListPage extends BasePage {
      * @return a HomePage instance.
      */
     public HomePage deleteCreatedIndividual() {
-        getDriver().findElement(deleteIndividualButton).click();
-        getDriver().findElement(confirmDeleteIndividualButton).click();
+        super.getDriver().findElement(deleteIndividualButton).click();
+        super.getDriver().findElement(confirmDeleteIndividualButton).click();
         return new HomePage();
     }
 
@@ -42,7 +42,7 @@ public class IndividualListPage extends BasePage {
      * @return boolean
      */
     public boolean recentlyViewedSpanVisible() {
-        return getDriver().findElement(recentlyViewedSpan).isDisplayed();
+        return super.getDriver().findElement(recentlyViewedSpan).isDisplayed();
     }
 
     /**
@@ -50,6 +50,6 @@ public class IndividualListPage extends BasePage {
      */
     @Override
     protected void waitForPageToLoad() {
-        getWait().until(ExpectedConditions.presenceOfElementLocated(deleteIndividualButton));
+        super.getWait().until(ExpectedConditions.presenceOfElementLocated(deleteIndividualButton));
     }
 }

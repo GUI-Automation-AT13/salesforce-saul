@@ -6,7 +6,7 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package core;
+package core.selenium;
 
 import config.ConfigManager;
 import org.openqa.selenium.WebDriver;
