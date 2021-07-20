@@ -27,6 +27,7 @@ public final class PageTransporter {
         goToUrl(baseUrl);
         return new LoginPage();
     }
+
     /**
      * Navigates to the individual form page.
      * @return IndividualFormPage
@@ -34,6 +35,15 @@ public final class PageTransporter {
     public IndividualFormPage navigateToIndividualFormPage() {
         goToUrl(baseUrl.concat("/lightning/o/Individual/new?count=1"));
         return new IndividualFormPage();
+    }
+
+    /**
+     * Navigates to the individual list page.
+     * @return IndividualListPage
+     */
+    public IndividualListPage navigateToIndividualListPage() {
+        goToUrl(baseUrl.concat("/lightning/o/Individual/list?filterName=Recent"));
+        return new IndividualListPage();
     }
 
     /**

@@ -42,6 +42,8 @@ public class IndividualFormPage extends BasePage {
     private By saveButton = By.cssSelector("button[title=\"Save\"]");
     private By createdIndividualLabel = By.cssSelector(".slds-page-header__title > .uiOutputText");
 
+    private By createdSuccessMessage = By.xpath("//span[contains(.,\"was created.\")]");
+
     /**
      * Constructor for WebDriver.
      */
@@ -217,10 +219,22 @@ public class IndividualFormPage extends BasePage {
 
     /**
      * Clicks on the save button.
+     * @return IndividualRecordPage
      */
-    public void save() {
+    public IndividualRecordPage save() {
         WebElement webElement = getDriver().findElement(saveButton);
         getWebElementAction().clickOnElement(webElement);
+        return new IndividualRecordPage();
+    }
+
+    /**
+     * Returns an alert message.
+     * @return String
+     */
+    public String getCreatedSuccessMessage() {
+        getWait().until(ExpectedConditions.visibilityOf(getDriver()
+                .findElement(createdSuccessMessage)));
+        return getDriver().findElement(createdSuccessMessage).getText();
     }
 
     /**

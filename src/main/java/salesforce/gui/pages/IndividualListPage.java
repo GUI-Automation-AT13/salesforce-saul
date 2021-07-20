@@ -15,28 +15,15 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class IndividualListPage extends BasePage {
 
-    private By deleteIndividualButton = By.cssSelector("div[title=\"Delete\"]");
-    private By confirmDeleteIndividualButton = By.cssSelector("button[title=\"Delete\"] span");
     private By recentlyViewedSpan = By.cssSelector("span.triggerLinkText");
+    private By deletedSuccessMessage = By.xpath("//span[contains(.,\"was deleted.\")]");
+    private WebElement dropDownMenu;
 
     /**
      * Constructor for the IndividualListPage.
      */
     public IndividualListPage() {
         PageFactory.initElements(super.getDriver(), this);
-    }
-
-    /**
-     * Deletes the created individual.
-     *
-     * @return a HomePage instance.
-     */
-    public HomePage deleteCreatedIndividual() {
-        WebElement webElement = getDriver().findElement(deleteIndividualButton);
-        getWebElementAction().clickOnElement(webElement);
-        WebElement webElement1 = getDriver().findElement(confirmDeleteIndividualButton);
-        getWebElementAction().clickOnElement(webElement1);
-        return new HomePage();
     }
 
     /**
@@ -49,10 +36,83 @@ public class IndividualListPage extends BasePage {
     }
 
     /**
+     * Deletes the last created or modified record.
+     */
+    public void deleteLastModifiedRecord() {
+        getDriver().findElement(By.xpath("//tbody/tr[1]//span/span[contains(.,\"Show Actions\")]"
+                + "/preceding-sibling::span")).click();
+        dropDownMenu = getDriver().findElement(By.xpath("//tbody/tr[1]//a[@title="
+                + "\"Show 2 more actions\"]/ancestor::div[@id and @data-interactive-uid]"));
+        clickOnARecordDropDownMenuDelete();
+    }
+
+    /**
+     * Returns an alert message.
+     * @return String
+     */
+    public String getDeletedSuccessMessage() {
+        getWait().until(ExpectedConditions.visibilityOf(getDriver()
+                .findElement(deletedSuccessMessage)));
+        return getDriver().findElement(deletedSuccessMessage).getText();
+    }
+    /**
+     * Clicks on a record from the list of Individual records given the name.
+     * @param name
+     */
+    public void clickOnRecordByName(final String name) {
+        WebElement webElement = getDriver().findElement(By.cssSelector("[title=\"" + name + "\"]"));
+        getWebElementAction().clickOnElement(webElement);
+    }
+
+    /**
+     * Search for a record given the name.
+     * @param name
+     * @return boolean
+     */
+    public boolean isThereRecordWithName(final String name) {
+        return getDriver().findElement(By.cssSelector("[title=\"" + name + "\"]"))
+                .getText().equals(name);
+    }
+
+    /**
+     * Clicks on options Drop down menu options given the name of record.
+     * @param name
+     */
+    public void clickOnARecordDropDownMenuOption(final String name) {
+        getDriver().findElement(By.xpath("//a[@title=\"" + name + "\"]/ancestor::tr//"
+                + "span/span[contains(.,\"Show Actions\")]/preceding-sibling::span\"")).click();
+        dropDownMenu = getDriver().findElement(By.xpath("//a[@title=\"" + name + "\"]"
+                + "/ancestor::tr//a[@title=\"Show 2 more actions\"]"
+                + "/ancestor::div[@id and @data-interactive-uid]"));
+        getWebElementAction().clickOnElement(dropDownMenu);
+    }
+
+    /**
+     * Click on a record Drop down menu Edit.
+     */
+    public void clickOnARecordDropDownMenuEdit() {
+        WebElement webElement = getDriver().findElement(By.cssSelector("div[aria-labelledby="
+                + "\"" + dropDownMenu.getAttribute("id") + "\"] a[title=\"Edit\"]"));
+        getWebElementAction().clickOnElement(webElement);
+    }
+
+    /**
+     * Click on a record Drop down menu Delete.
+     */
+    public void clickOnARecordDropDownMenuDelete() {
+        getWait().until(ExpectedConditions.visibilityOf(dropDownMenu));
+        getDriver().findElement(By.cssSelector("div[aria-labelledby="
+                + "\"" + dropDownMenu.getAttribute("id") + "\"] a[title=\"Delete\"]")).click();
+        WebElement webElement = getDriver().findElement(By
+                .xpath("//span[contains(text(),\"Delete\")]"));
+        webElement.click();
+    }
+
+    /**
      * Method to wait for a page to load.
      */
     @Override
     protected void waitForPageToLoad() {
-        getWait().until(ExpectedConditions.presenceOfElementLocated(deleteIndividualButton));
+        getWait().until(ExpectedConditions.presenceOfElementLocated(recentlyViewedSpan));
     }
 }

@@ -11,6 +11,8 @@ package org.salesforce.scripts.Individual;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import salesforce.gui.pages.IndividualFormPage;
+import salesforce.gui.pages.IndividualListPage;
+import salesforce.gui.pages.IndividualRecordPage;
 
 public class CreateIndividualTest extends Basetest {
 
@@ -18,8 +20,22 @@ public class CreateIndividualTest extends Basetest {
     public void createIndividualWithLastname() {
         IndividualFormPage individualFormPage = pageTransporter.navigateToIndividualFormPage();
         individualFormPage.setLastnameTextbox("Paul");
-        individualFormPage.save();
-        Assert.assertTrue(individualFormPage.createdIndividualLabelVisibility());
+        IndividualRecordPage individualRecordPage = individualFormPage.save();
+        String expected = "was created.";
+        String fullname = "Paul";
+
+        String resultMessage = individualFormPage.getCreatedSuccessMessage();
+        Assert.assertTrue(resultMessage.contains(expected));
+
+        String headerNameText = individualRecordPage.getNameHeaderText();
+        Assert.assertEquals(headerNameText, fullname);
+
+        individualRecordPage.clickonDetailsTab();
+        String nameDetail = individualRecordPage.getNameDetail();
+        Assert.assertEquals(nameDetail, fullname);
+
+        IndividualListPage individualListPage = pageTransporter.navigateToIndividualListPage();
+        Assert.assertTrue(individualListPage.isThereRecordWithName(fullname));
     }
 
     @Test(groups = "Create")
@@ -27,8 +43,21 @@ public class CreateIndividualTest extends Basetest {
         IndividualFormPage individualFormPage = pageTransporter.navigateToIndividualFormPage();
         individualFormPage.setLastnameTextbox("Paul");
         individualFormPage.setFirstnameTextbox("Jake");
-        individualFormPage.save();
-        String expected = "Jake Paul";
-        Assert.assertEquals(individualFormPage.createdIndividualNameText(), expected);
+        IndividualRecordPage individualRecordPage = individualFormPage.save();
+        String expected = "was created.";
+        String fullName = "Jake Paul";
+
+        String resultMessage = individualFormPage.getCreatedSuccessMessage();
+        Assert.assertTrue(resultMessage.contains(expected));
+
+        String headerNameText = individualRecordPage.getNameHeaderText();
+        Assert.assertEquals(headerNameText, fullName);
+
+        individualRecordPage.clickonDetailsTab();
+        String nameDetail = individualRecordPage.getNameDetail();
+        Assert.assertEquals(nameDetail, fullName);
+
+        IndividualListPage individualListPage = pageTransporter.navigateToIndividualListPage();
+        Assert.assertTrue(individualListPage.isThereRecordWithName(fullName));
     }
 }

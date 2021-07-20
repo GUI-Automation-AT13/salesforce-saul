@@ -11,18 +11,13 @@ package org.salesforce.scripts.Individual;
 import config.ConfigManager;
 import config.PropertiesConfig;
 import core.selenium.ChromeBrowser;
-import core.selenium.WebElementAction;
-import org.openqa.selenium.WebElement;
-import salesforce.gui.pages.PageTransporter;
+import salesforce.gui.pages.*;
 import core.selenium.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-import salesforce.gui.pages.HomePage;
-import salesforce.gui.pages.IndividualListPage;
-import salesforce.gui.pages.LoginPage;
 
 public class Basetest {
 
@@ -48,9 +43,11 @@ public class Basetest {
 
     @AfterMethod(onlyForGroups = {"Create"})
     public void deleteCreatedIndividual() {
-        IndividualListPage individualListPage = new IndividualListPage();
-        individualListPage.deleteCreatedIndividual();
-        Assert.assertTrue(individualListPage.recentlyViewedSpanVisible());
+        IndividualListPage individualListPage = pageTransporter.navigateToIndividualListPage();
+        individualListPage.deleteLastModifiedRecord();
+        String actual = individualListPage.getDeletedSuccessMessage();
+        String expected = "was deleted.";
+        Assert.assertTrue(actual.contains(expected));
     }
 
     @AfterSuite
