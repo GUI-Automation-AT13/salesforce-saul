@@ -10,7 +10,6 @@ package salesforce.gui.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class IndividualListPage extends BasePage {
@@ -20,26 +19,19 @@ public class IndividualListPage extends BasePage {
     private WebElement dropDownMenu;
 
     /**
-     * Constructor for the IndividualListPage.
-     */
-    public IndividualListPage() {
-        PageFactory.initElements(super.getDriver(), this);
-    }
-
-    /**
      * Checks if the view list span is visible.
      *
      * @return boolean
      */
     public boolean recentlyViewedSpanVisible() {
-        return getDriver().findElement(recentlyViewedSpan).isDisplayed();
+        return findElement(recentlyViewedSpan).isDisplayed();
     }
 
     /**
      * Deletes the last created or modified record.
      */
     public void deleteLastModifiedRecord() {
-        getDriver().findElement(By.xpath("//tbody/tr[1]//span/span[contains(.,\"Show Actions\")]"
+        findElement(By.xpath("//tbody/tr[1]//span/span[contains(.,\"Show Actions\")]"
                 + "/preceding-sibling::span")).click();
         dropDownMenu = getDriver().findElement(By.xpath("//tbody/tr[1]//a[@title="
                 + "\"Show 2 more actions\"]/ancestor::div[@id and @data-interactive-uid]"));
@@ -51,17 +43,15 @@ public class IndividualListPage extends BasePage {
      * @return String
      */
     public String getDeletedSuccessMessage() {
-        getWait().until(ExpectedConditions.visibilityOf(getDriver()
-                .findElement(deletedSuccessMessage)));
-        return getDriver().findElement(deletedSuccessMessage).getText();
+        getWait().until(ExpectedConditions.visibilityOf(findElement(deletedSuccessMessage)));
+        return findElement(deletedSuccessMessage).getText();
     }
     /**
      * Clicks on a record from the list of Individual records given the name.
      * @param name
      */
     public void clickOnRecordByName(final String name) {
-        WebElement webElement = getDriver().findElement(By.cssSelector("[title=\"" + name + "\"]"));
-        getWebElementAction().clickOnElement(webElement);
+        findElement(By.cssSelector("[title=\"" + name + "\"]")).click();
     }
 
     /**
@@ -70,8 +60,7 @@ public class IndividualListPage extends BasePage {
      * @return boolean
      */
     public boolean isThereRecordWithName(final String name) {
-        return getDriver().findElement(By.cssSelector("[title=\"" + name + "\"]"))
-                .getText().equals(name);
+        return findElement(By.cssSelector("[title=\"" + name + "\"]")).getText().equals(name);
     }
 
     /**
@@ -79,21 +68,18 @@ public class IndividualListPage extends BasePage {
      * @param name
      */
     public void clickOnARecordDropDownMenuOption(final String name) {
-        getDriver().findElement(By.xpath("//a[@title=\"" + name + "\"]/ancestor::tr//"
+        findElement(By.xpath("//a[@title=\"" + name + "\"]/ancestor::tr//"
                 + "span/span[contains(.,\"Show Actions\")]/preceding-sibling::span\"")).click();
-        dropDownMenu = getDriver().findElement(By.xpath("//a[@title=\"" + name + "\"]"
-                + "/ancestor::tr//a[@title=\"Show 2 more actions\"]"
-                + "/ancestor::div[@id and @data-interactive-uid]"));
-        getWebElementAction().clickOnElement(dropDownMenu);
+        findElement(By.xpath("//a[@title=\"" + name + "\"]/ancestor::tr//a[@title="
+                + "\"Show 2 more actions\"]/ancestor::div[@id and @data-interactive-uid]")).click();
     }
 
     /**
      * Click on a record Drop down menu Edit.
      */
     public void clickOnARecordDropDownMenuEdit() {
-        WebElement webElement = getDriver().findElement(By.cssSelector("div[aria-labelledby="
-                + "\"" + dropDownMenu.getAttribute("id") + "\"] a[title=\"Edit\"]"));
-        getWebElementAction().clickOnElement(webElement);
+        findElement(By.cssSelector("div[aria-labelledby=\""
+                + dropDownMenu.getAttribute("id") + "\"] a[title=\"Edit\"]")).click();
     }
 
     /**
@@ -101,11 +87,9 @@ public class IndividualListPage extends BasePage {
      */
     public void clickOnARecordDropDownMenuDelete() {
         getWait().until(ExpectedConditions.visibilityOf(dropDownMenu));
-        getDriver().findElement(By.cssSelector("div[aria-labelledby="
+        findElement(By.cssSelector("div[aria-labelledby="
                 + "\"" + dropDownMenu.getAttribute("id") + "\"] a[title=\"Delete\"]")).click();
-        WebElement webElement = getDriver().findElement(By
-                .xpath("//span[contains(text(),\"Delete\")]"));
-        webElement.click();
+        findElement(By.xpath("//span[contains(text(),\"Delete\")]")).click();
     }
 
     /**

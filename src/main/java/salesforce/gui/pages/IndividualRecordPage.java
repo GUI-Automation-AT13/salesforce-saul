@@ -8,9 +8,8 @@
 
 package salesforce.gui.pages;
 
+import core.selenium.BySelector;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class IndividualRecordPage extends BasePage {
@@ -22,55 +21,20 @@ public class IndividualRecordPage extends BasePage {
 
     private By confirmDeleteIndividualButton = By.cssSelector("button[title=\"Delete\"] span");
 
-    private By relatedIndividualHistoryLink = By.cssSelector("h2 [title=\"Individual History\"]");
-    private By relatedContactsLink = By.cssSelector("h2 [title=\"Contacts\"]");
-    private By relatedLeadsLink = By.cssSelector("h2 [title=\"Leads\"]");
-    private By relatedContactPointEmailsLink = By.cssSelector("h2 [title="
-            + "\"Contact Point Emails\"]");
-    private By relatedContactPointPhonesLink = By.cssSelector("h2 [title="
-            + "\"Contact Point Phones\"]");
+    private final String relatedFeatureLink = "h2 [title=\"%s\"]";
 
-    private By newContactButton = By.xpath("//span[@title=\"Contacts\"]/ancestor::div[contains("
-            + "@class,\"slds-grid\")]//div[@title=\"New\"]");
-    private By newLeadButton = By.cssSelector("//span[@title=\"Leads\"]/ancestor::div[contains("
-            + "@class,\"slds-grid\")]//div[@title=\"New\"]");
-    private By newContactPointEmailButton = By.xpath("//span[@title=\"Contact Point Emails\"]"
-            + "/ancestor::div[contains(@class,\"slds-grid\")]//div[@title=\"New\"]");
-    private By newContactPointPhoneButton = By.xpath("//span[@title=\"Contact Point Phones\"]"
-            + "/ancestor::div[contains(@class,\"slds-grid\")]//div[@title=\"New\"]");
+    private final String newFeatureButton = "//span[@title=\"%s\"]/ancestor::div[contains("
+            + "@class,\"slds-grid\")]//div[@title=\"New\"]";
 
     private By labelNameDetail = By.xpath("//span[contains(text(),\"Name\")]/../.."
             + "//span[@class=\"uiOutputText\"]");
     private By labelBirthdateDetail = By.xpath("//span[contains(text(),\"Birth Date\")]"
             + "/../..//span[contains(@class,\"test-id__field-value\")]");
-    private By checkboxDontProcess = By.xpath("//span[contains(text(),\"Don't Process\")]"
-            + "/../..//img[@alt]");
-    private By checkboxDontMarket = By.xpath("//span[contains(text(),\"Don't Market\")]"
-            + "/../..//img[@alt]");
-    private By checkboxExportIndividualData = By.xpath("//span[contains(text(),"
-            + "\"Export Individual's Data\")]/../..//img[@alt]");
-    private By checkboxOkToStorePiiDataElsewhere = By.xpath("//span[contains(text(),"
-            + "\"OK to Store PII Data Elsewhere\")]/../..//img[@alt]");
-    private By checkboxBlockGeolocationTracking = By.xpath("//span[contains(text(),"
-            + "\"Block Geolocation Tracking\")]/../..//img[@alt]");
-    private By checkboxDontTrack = By.xpath("//span[contains(text(),\"Don't Track\")]"
-            + "/../..//img[@alt]");
-    private By checkboxDontProfile = By.xpath("//span[contains(text(),\"Don't Profile\")]"
-            + "/../..//img[@alt]");
-    private By checkboxForgetThisIndividual = By.xpath("//span[contains(text(),"
-            + "\"Forget this Individual\")]/../..//img[@alt]");
+    private String checkboxDetail = "//span[contains(text(),\"%s\")]/../..//img[@alt]";
     private By labelIndividualsAgeDetail = By.xpath("//span[contains(text(),\"Individual's Age\")]"
             + "/../..//span[contains(@class,\"test-id__field-value\")]");
-
     private By deletedSuccessMessage = By.xpath("//span[contains(.,\"was deleted.\")]");
     private By detailsTabButton = By.xpath("//span[contains(.,\"Details\")]");
-
-    /**
-     * IndividualRecordPage constructor.
-     */
-    public IndividualRecordPage() {
-        PageFactory.initElements(getDriver(), this);
-    }
 
     /**
      * Deletes the created individual.
@@ -78,21 +42,19 @@ public class IndividualRecordPage extends BasePage {
      * @return a HomePage instance.
      */
     public IndividualListPage deleteCreatedIndividual() {
-        WebElement webElement = getDriver().findElement(deleteHeaderButton);
-        getWebElementAction().clickOnElement(webElement);
-        webElement = getDriver().findElement(confirmDeleteIndividualButton);
-        getWebElementAction().clickOnElement(webElement);
+        findElement(deleteHeaderButton).click();
+        findElement(confirmDeleteIndividualButton).click();
         return new IndividualListPage();
     }
 
     /**
      * Returns an alert message.
+     *
      * @return String
      */
     public String getDeletedSuccessMessage() {
-        getWait().until(ExpectedConditions.visibilityOf(getDriver()
-                .findElement(deletedSuccessMessage)));
-        return getDriver().findElement(deletedSuccessMessage).getText();
+        getWait().until(ExpectedConditions.visibilityOf(findElement(deletedSuccessMessage)));
+        return findElement(deletedSuccessMessage).getText();
     }
 
     /**
@@ -101,87 +63,79 @@ public class IndividualRecordPage extends BasePage {
      * @return String
      */
     public String getNameHeaderText() {
-        return getDriver().findElement(nameHeaderLabel).getText();
+        return findElement(nameHeaderLabel).getText();
     }
 
     /**
      * Clicks on the Edit button in the header.
      */
     public void clickEditHeaderButton() {
-        WebElement webElement = getDriver().findElement(editHeaderButton);
-        getWebElementAction().clickOnElement(webElement);
+        findElement(editHeaderButton).click();
     }
 
     /**
      * Clicks on the Delete button in the header.
      */
     public void clickDeleteHeaderButton() {
-        WebElement webElement = getDriver().findElement(deleteHeaderButton);
-        getWebElementAction().clickOnElement(webElement);
+        findElement(deleteHeaderButton).click();
     }
 
     /**
      * Clicks on the Clone button in the header.
      */
     public void clickCloneHeaderButton() {
-        WebElement webElement = getDriver().findElement(cloneHeaderButton);
-        getWebElementAction().clickOnElement(webElement);
+        findElement(cloneHeaderButton).click();
     }
 
     /**
      * Clicks on the relatedIndividualHistoryLink.
      */
     public void clickRelatedIndividualHistoryLink() {
-        WebElement webElement = getDriver().findElement(relatedIndividualHistoryLink);
-        getWebElementAction().clickOnElement(webElement);
+        findElement(BySelector.withParameter(relatedFeatureLink, "Individual History")).click();
     }
 
     /**
      * Clicks on the relatedContactsLink.
      */
     public void clickRelatedContactsLink() {
-        WebElement webElement = getDriver().findElement(relatedContactsLink);
-        getWebElementAction().clickOnElement(webElement);
+        findElement(BySelector.withParameter(relatedFeatureLink, "Contacts")).click();
     }
 
     /**
      * Clicks on the relatedLeadsLink.
      */
     public void clickRelatedLeadsLink() {
-        WebElement webElement = getDriver().findElement(relatedLeadsLink);
-        getWebElementAction().clickOnElement(webElement);
+        findElement(BySelector.withParameter(relatedFeatureLink, "Leads")).click();
     }
 
     /**
      * Clicks on the relatedContactPointEmailsLink.
      */
     public void clickRelatedContactPointEmailsLink() {
-        WebElement webElement = getDriver().findElement(relatedContactPointEmailsLink);
-        getWebElementAction().clickOnElement(webElement);
+        findElement(BySelector.withParameter(relatedFeatureLink, "Contact Point Emails")).click();
     }
 
     /**
      * Clicks on the relatedContactPointPhonesLink.
      */
     public void clickRelatedContactPointPhonesLink() {
-        WebElement webElement = getDriver().findElement(relatedContactPointPhonesLink);
-        getWebElementAction().clickOnElement(webElement);
+        findElement(BySelector.withParameter(relatedFeatureLink, "Contact Point Phones")).click();
     }
 
     /**
      * Clicks on the Details tab.
      */
     public void clickonDetailsTab() {
-        WebElement webElement = getDriver().findElement(detailsTabButton);
-        getWebElementAction().clickOnElement(webElement);
+        findElement(detailsTabButton).click();
     }
+
     /**
      * Returns the name text in the details tab.
      *
      * @return String
      */
     public String getNameDetail() {
-        return getDriver().findElement(labelNameDetail).getText();
+        return findElement(labelNameDetail).getText();
     }
 
     /**
@@ -190,7 +144,7 @@ public class IndividualRecordPage extends BasePage {
      * @return String
      */
     public String getBrithdateDetail() {
-        return getDriver().findElement(labelBirthdateDetail).getText();
+        return findElement(labelBirthdateDetail).getText();
     }
 
     /**
@@ -199,7 +153,7 @@ public class IndividualRecordPage extends BasePage {
      * @return boolean
      */
     public boolean checkIfDontProcess() {
-        return getDriver().findElement(checkboxDontProcess).isSelected();
+        return findElement(BySelector.withParameter(checkboxDetail, "Don't Process")).isSelected();
     }
 
     /**
@@ -208,7 +162,7 @@ public class IndividualRecordPage extends BasePage {
      * @return boolean
      */
     public boolean checkIfDontMarket() {
-        return getDriver().findElement(checkboxDontMarket).isSelected();
+        return findElement(BySelector.withParameter(checkboxDetail, "Don't Market")).isSelected();
     }
 
     /**
@@ -217,16 +171,18 @@ public class IndividualRecordPage extends BasePage {
      * @return boolean
      */
     public boolean checkIfExportIndividualsData() {
-        return getDriver().findElement(checkboxExportIndividualData).isSelected();
+        return findElement(BySelector.withParameter(checkboxDetail, "Export Individual's Data"))
+                .isSelected();
     }
 
     /**
-     * Returns the value of the OkToStorePiiDataElsewhere checkbox.
+     * Returns the value of the OK to Store PII Data Elsewhere checkbox.
      *
      * @return boolean
      */
     public boolean checkIfOkToStorePiiDataElsewhere() {
-        return getDriver().findElement(checkboxOkToStorePiiDataElsewhere).isSelected();
+        return findElement(BySelector.withParameter(checkboxDetail, "OK to Store PII Data Elsewhere"))
+                .isSelected();
     }
 
     /**
@@ -235,7 +191,8 @@ public class IndividualRecordPage extends BasePage {
      * @return boolean
      */
     public boolean checkIfBlockGeolocationTracking() {
-        return getDriver().findElement(checkboxBlockGeolocationTracking).isSelected();
+        return findElement(BySelector.withParameter(checkboxDetail, "Block Geolocation Tracking"))
+                .isSelected();
     }
 
     /**
@@ -244,7 +201,7 @@ public class IndividualRecordPage extends BasePage {
      * @return boolean
      */
     public boolean checkIfDontProfile() {
-        return getDriver().findElement(checkboxDontProfile).isSelected();
+        return findElement(BySelector.withParameter(checkboxDetail, "Don't Profile")).isSelected();
     }
 
     /**
@@ -253,7 +210,7 @@ public class IndividualRecordPage extends BasePage {
      * @return boolean
      */
     public boolean checkIfDontTrack() {
-        return getDriver().findElement(checkboxDontTrack).isSelected();
+        return findElement(BySelector.withParameter(checkboxDetail, "Don't Track")).isSelected();
     }
 
     /**
@@ -262,7 +219,7 @@ public class IndividualRecordPage extends BasePage {
      * @return boolean
      */
     public boolean checkIfForgetThisIndividual() {
-        return getDriver().findElement(checkboxForgetThisIndividual).isSelected();
+        return findElement(BySelector.withParameter(checkboxDetail, "Forget This Individual")).isSelected();
     }
 
     /**
@@ -271,39 +228,35 @@ public class IndividualRecordPage extends BasePage {
      * @return String
      */
     public String getIndividualAgeDetail() {
-        return getDriver().findElement(labelIndividualsAgeDetail).getText();
+        return findElement(labelIndividualsAgeDetail).getText();
     }
 
     /**
-     * Clicks on the New Contact button.
+     * Clicks on the new Contact button.
      */
     public void clickOnNewContactButton() {
-        WebElement webElement = getDriver().findElement(newContactButton);
-        getWebElementAction().clickOnElement(webElement);
+        findElement(BySelector.withParameter(newFeatureButton, "Contact")).click();
     }
 
     /**
-     * Clicks on the New Lead button.
+     * Clicks on the new Lead button.
      */
     public void clickOnNewLeadButton() {
-        WebElement webElement = getDriver().findElement(newLeadButton);
-        getWebElementAction().clickOnElement(webElement);
+        findElement(BySelector.withParameter(newFeatureButton, "Lead")).click();
     }
 
     /**
-     * Clicks on the New Contact Point Email button.
+     * Clicks on the new Contact Point Emails button.
      */
     public void clickNewContactPointEmailButton() {
-        WebElement webElement = getDriver().findElement(newContactPointEmailButton);
-        getWebElementAction().clickOnElement(webElement);
+        findElement(BySelector.withParameter(newFeatureButton, "Contact Point Emails")).click();
     }
 
     /**
-     * Clicks on the New Contact Point Phone button.
+     * Clicks on the new Contact Point Phones button.
      */
     public void clickNewContactPointPhoneButton() {
-        WebElement webElement = getDriver().findElement(newContactPointPhoneButton);
-        getWebElementAction().clickOnElement(webElement);
+        findElement(BySelector.withParameter(newFeatureButton, "Contact Point Phones")).click();
     }
 
     /**
