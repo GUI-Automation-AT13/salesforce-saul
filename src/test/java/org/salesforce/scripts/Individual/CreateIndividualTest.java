@@ -20,7 +20,7 @@ public class CreateIndividualTest extends Basetest {
     public void createIndividualWithLastname() {
         IndividualFormPage individualFormPage = pageTransporter.navigateToIndividualFormPage();
         individualFormPage.setLastnameTextbox("Paul");
-        IndividualRecordPage individualRecordPage = individualFormPage.save();
+        IndividualRecordPage individualRecordPage = individualFormPage.clickOnsave();
         String expected = "was created.";
         String fullname = "Paul";
 
@@ -43,7 +43,7 @@ public class CreateIndividualTest extends Basetest {
         IndividualFormPage individualFormPage = pageTransporter.navigateToIndividualFormPage();
         individualFormPage.setLastnameTextbox("Paul");
         individualFormPage.setFirstnameTextbox("Jake");
-        IndividualRecordPage individualRecordPage = individualFormPage.save();
+        IndividualRecordPage individualRecordPage = individualFormPage.clickOnsave();
         String expected = "was created.";
         String fullName = "Jake Paul";
 
