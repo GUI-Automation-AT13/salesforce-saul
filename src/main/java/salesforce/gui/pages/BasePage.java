@@ -10,7 +10,10 @@ package salesforce.gui.pages;
 
 import core.selenium.WebDriverManager;
 import core.selenium.WebElementAction;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class BasePage {
@@ -18,6 +21,8 @@ public abstract class BasePage {
     private WebDriver driver = WebDriverManager.getDriver();
     private WebDriverWait wait = WebDriverManager.getDriverWait();
     private WebElementAction webElementAction = new WebElementAction();
+    private Actions action = new Actions(WebDriverManager.getDriver());
+    private PageTransporter pageTransporter = new PageTransporter();
 
     /**
      * Waits for a page to load.
@@ -44,9 +49,38 @@ public abstract class BasePage {
 
     /**
      * Returns the WebElementAction.
+     *
      * @return WebElementAction
      */
     public WebElementAction getWebElementAction() {
         return webElementAction;
+    }
+
+    /**
+     * Returns the Actions instance.
+     *
+     * @return Actions
+     */
+    public Actions getActions() {
+        return action;
+    }
+
+    /**
+     * Returns a Web Element found from the provided selector.
+     *
+     * @param bySelector
+     * @return WebElement
+     */
+    public WebElement findElement(final By bySelector) {
+        return driver.findElement(bySelector);
+    }
+
+    /**
+     * Return the PageTransporter instance.
+     *
+     * @return PageTransporter
+     */
+    public PageTransporter getPageTransporter() {
+        return pageTransporter;
     }
 }

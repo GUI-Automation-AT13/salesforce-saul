@@ -9,7 +9,6 @@
 package salesforce.gui.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class HomePage extends BasePage {
@@ -20,19 +19,12 @@ public class HomePage extends BasePage {
     private By confirmDeleteIndividualButton = By.cssSelector("button[title=\"Delete\"] span");
 
     /**
-     * Constructor for the HomePage class.
-     */
-    public HomePage() {
-        PageFactory.initElements(super.getDriver(), this);
-    }
-
-    /**
      * Checks if the ObjectManager label is visible.
      *
      * @return boolean.
      */
     public boolean labelObjectManageriIsVisible() {
-        return super.getDriver().findElement(labelObjectManager).isDisplayed();
+        return findElement(labelObjectManager).isDisplayed();
     }
 
     /**
@@ -40,6 +32,6 @@ public class HomePage extends BasePage {
      */
     @Override
     protected void waitForPageToLoad() {
-        super.getWait().until(ExpectedConditions.presenceOfElementLocated(deleteIndividualButton));
+        getWait().until(ExpectedConditions.presenceOfElementLocated(deleteIndividualButton));
     }
 }

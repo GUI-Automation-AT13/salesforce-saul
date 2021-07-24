@@ -46,9 +46,11 @@ public class Basetest {
 
     @AfterMethod(onlyForGroups = {"Create"})
     public void deleteCreatedIndividual() {
-        IndividualListPage individualListPage = new IndividualListPage();
-        individualListPage.deleteCreatedIndividual();
-        Assert.assertTrue(individualListPage.recentlyViewedSpanVisible());
+        IndividualListPage individualListPage = pageTransporter.navigateToIndividualListPage();
+        individualListPage.deleteLastModifiedRecord();
+        String actual = individualListPage.getDeletedSuccessMessage();
+        String expected = "was deleted.";
+        Assert.assertTrue(actual.contains(expected));
     }
 
     @AfterSuite

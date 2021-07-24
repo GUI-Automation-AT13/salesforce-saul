@@ -13,6 +13,7 @@ repositories {
 
 dependencies {
     implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-support', version: '3.141.59'
     implementation 'org.testng:testng:7.4.0'
     implementation group: 'org.aeonbits.owner', name: 'owner-java8', version: '1.0.12'
 }
