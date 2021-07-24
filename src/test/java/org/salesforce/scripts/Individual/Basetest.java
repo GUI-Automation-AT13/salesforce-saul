@@ -11,8 +11,6 @@ package org.salesforce.scripts.Individual;
 import config.ConfigManager;
 import config.PropertiesConfig;
 import core.selenium.ChromeBrowser;
-import core.selenium.WebElementAction;
-import org.openqa.selenium.WebElement;
 import salesforce.gui.pages.PageTransporter;
 import core.selenium.WebDriverManager;
 import org.openqa.selenium.WebDriver;

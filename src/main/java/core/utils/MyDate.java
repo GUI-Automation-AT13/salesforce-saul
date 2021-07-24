@@ -27,7 +27,7 @@ public class MyDate {
     private int value;
     private String timeUnit;
     private String time;
-    private Calendar c;
+    private Calendar calendar;
     private Date parsedDate;
 
     /**
@@ -108,20 +108,20 @@ public class MyDate {
     }
 
     private Date calculateDate() {
-        c = Calendar.getInstance();
+        calendar = Calendar.getInstance();
         if (timeUnit.equals("TOMORROW")) {
-            c.add(getTimeType(), POSITIVE_VALUE);
+            calendar.add(getTimeType(), POSITIVE_VALUE);
         }
         if (timeUnit.equals("YESTERDAY")) {
-            c.add(getTimeType(), NEGATIVE_VALUE);
+            calendar.add(getTimeType(), NEGATIVE_VALUE);
         }
         if (time != null && time.equals("ago")) {
-            c.add(getTimeType(), value * NEGATIVE_VALUE);
+            calendar.add(getTimeType(), value * NEGATIVE_VALUE);
         }
         if (time != null && time.equals("from now")) {
-            c.add(getTimeType(), value);
+            calendar.add(getTimeType(), value);
         }
-        return c.getTime();
+        return calendar.getTime();
     }
 
     private int getTimeType() {

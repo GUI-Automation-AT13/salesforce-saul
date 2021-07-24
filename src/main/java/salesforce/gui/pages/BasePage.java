@@ -20,7 +20,7 @@ public abstract class BasePage {
     private WebElementAction webElementAction = new WebElementAction();
 
     /**
-     * Method to wait for a page to load.
+     * Waits for a page to load.
      */
     protected abstract void waitForPageToLoad();
 
