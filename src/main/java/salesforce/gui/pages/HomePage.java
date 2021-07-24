@@ -6,7 +6,7 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package salesforce.gui.page_object.pages;
+package salesforce.gui.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class HomePage extends BasePage {
 
+    public static final String URL = "/lightning/page/home";
     private By labelObjectManager = By.cssSelector(".hasActions .title");
     private By deleteIndividualButton = By.cssSelector("css=div[title=\"Delete\"]");
     private By confirmDeleteIndividualButton = By.cssSelector("button[title=\"Delete\"] span");
@@ -31,18 +32,7 @@ public class HomePage extends BasePage {
      * @return boolean.
      */
     public boolean labelObjectManageriIsVisible() {
-        return getDriver().findElement(labelObjectManager).isDisplayed();
-    }
-
-    /**
-     * Deletes the created individual element.
-     *
-     * @return HomePage
-     */
-    public HomePage deleteCreatedIndividual() {
-        getDriver().findElement(deleteIndividualButton).click();
-        getDriver().findElement(confirmDeleteIndividualButton).click();
-        return new HomePage();
+        return super.getDriver().findElement(labelObjectManager).isDisplayed();
     }
 
     /**
@@ -50,6 +40,6 @@ public class HomePage extends BasePage {
      */
     @Override
     protected void waitForPageToLoad() {
-        getWait().until(ExpectedConditions.presenceOfElementLocated(deleteIndividualButton));
+        super.getWait().until(ExpectedConditions.presenceOfElementLocated(deleteIndividualButton));
     }
 }

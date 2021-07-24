@@ -6,7 +6,7 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package salesforce.gui.page_object.views;
+package salesforce.gui.views;
 
 import config.ConfigManager;
 
@@ -16,9 +16,9 @@ import config.ConfigManager;
 public enum Views {
 
     CREATE_INDIVIDUAL(String.format("%s%s", ConfigManager.getConfiguration().baseUrl(),
-            "lightning/o/Individual/new?count=1")),
+            "/lightning/o/Individual/new?count=1")),
     INDIVIDUAL_RECENT_LIST(String.format("%s%s", ConfigManager.getConfiguration().baseUrl(),
-            "lightning/o/Individual/list?filterName=Recent"));
+            "/lightning/o/Individual/list?filterName=Recent"));
 
     private String view;
 

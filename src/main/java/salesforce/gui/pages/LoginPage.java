@@ -6,9 +6,10 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package salesforce.gui.page_object.pages;
+package salesforce.gui.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -31,7 +32,8 @@ public class LoginPage extends BasePage {
      * @param username
      */
     public void setUsernameTextbox(final String username) {
-        getDriver().findElement(usernameTextbox).sendKeys(username);
+        WebElement webElement = getDriver().findElement(usernameTextbox);
+        getWebElementAction().setInputField(webElement, username);
     }
 
     /**
@@ -40,7 +42,8 @@ public class LoginPage extends BasePage {
      * @param password
      */
     public void setPasswordTextbox(final String password) {
-        getDriver().findElement(passwordTextbox).sendKeys(password);
+        WebElement webElement = getDriver().findElement(passwordTextbox);
+        getWebElementAction().setInputField(webElement, password);
     }
 
     /**
@@ -49,7 +52,7 @@ public class LoginPage extends BasePage {
      * @return HomePage
      */
     public HomePage login() {
-        getDriver().findElement(loginButton).click();
+        super.getDriver().findElement(loginButton).click();
         return new HomePage();
     }
 
@@ -58,6 +61,6 @@ public class LoginPage extends BasePage {
      */
     @Override
     protected void waitForPageToLoad() {
-        getWait().until(ExpectedConditions.presenceOfElementLocated(loginButton));
+        super.getWait().until(ExpectedConditions.presenceOfElementLocated(loginButton));
     }
 }

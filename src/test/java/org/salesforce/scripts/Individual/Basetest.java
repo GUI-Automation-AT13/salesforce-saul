@@ -6,31 +6,45 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package org.salesforce.scripts;
+package org.salesforce.scripts.Individual;
 
 import config.ConfigManager;
 import config.PropertiesConfig;
-import core.ChromeBrowser;
-import core.WebDriverManager;
+import core.selenium.ChromeBrowser;
+import salesforce.gui.pages.PageTransporter;
+import core.selenium.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-import salesforce.gui.page_object.pages.IndividualListPage;
+import salesforce.gui.pages.HomePage;
+import salesforce.gui.pages.IndividualListPage;
+import salesforce.gui.pages.LoginPage;
 
 public class Basetest {
 
-    protected static WebDriver driver;
+    protected WebDriver driver;
+    protected PageTransporter pageTransporter;
+    protected PropertiesConfig propertiesConfig;
 
     @BeforeSuite
     public void setUp() {
-        PropertiesConfig propertiesConfig = ConfigManager.getConfiguration();
+        propertiesConfig = ConfigManager.getConfiguration();
         driver = WebDriverManager.getDriver(new ChromeBrowser());
-        driver.get(propertiesConfig.baseUrl());
+        pageTransporter = new PageTransporter();
+        login();
     }
 
-    @AfterMethod
+    public void login() {
+        LoginPage loginpage = pageTransporter.navigateToLoginPage();
+        loginpage.setUsernameTextbox(propertiesConfig.username());
+        loginpage.setPasswordTextbox(propertiesConfig.password());
+        HomePage homePage = loginpage.login();
+        Assert.assertTrue(homePage.labelObjectManageriIsVisible());
+    }
+
+    @AfterMethod(onlyForGroups = {"Create"})
     public void deleteCreatedIndividual() {
         IndividualListPage individualListPage = new IndividualListPage();
         individualListPage.deleteCreatedIndividual();

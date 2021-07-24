@@ -6,26 +6,28 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package core;
+package core.selenium;
 
 import config.ConfigManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class ChromeBrowser implements Browser {
+public class FirefoxBrowser implements Browser {
 
     /**
-     * Returns the chrome driver name.
+     * Returns the firefox driver name.
+     *
      * @return String
      */
     @Override
     public String getDriverName() {
-        return "webdriver.chrome.driver";
+        return "webdriver.decko.driver";
     }
 
     /**
-     * Returns the chrome driver path.
-     * @return
+     * Returns the firefox driver path.
+     *
+     * @return String
      */
     @Override
     public String getDriverPath() {
@@ -33,11 +35,12 @@ public class ChromeBrowser implements Browser {
     }
 
     /**
-     * Returns the chrome driver.
+     * Returns the firefox driver.
+     *
      * @return WebDriver
      */
     @Override
     public WebDriver getDriver() {
-        return new ChromeDriver();
+        return new FirefoxDriver();
     }
 }

@@ -11,8 +11,7 @@ package unit.tests.utils;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import utils.MyDate;
-
+import core.utils.MyDate;
 import java.util.Calendar;
 
 public class MyDateTests {
@@ -52,155 +51,155 @@ public class MyDateTests {
     @Test
     public void getTodayShouldReturnTheCorrectDate() throws Exception {
         MyDate myDate = new MyDate();
-        Calendar c;
-        c = Calendar.getInstance();
-        Assert.assertEquals(c.getTime().toString(), myDate.get("TODAY").toString());
+        Calendar calendar;
+        calendar = Calendar.getInstance();
+        Assert.assertEquals(calendar.getTime().toString(), myDate.get("TODAY").toString());
     }
 
     @Test
     public void getTomorrowShouldReturnTheCorrectDate() throws Exception {
         MyDate myDate = new MyDate();
-        Calendar c;
-        c = Calendar.getInstance();
-        c.add(Calendar.DAY_OF_YEAR, 1);
-        Assert.assertEquals(c.getTime().toString(), myDate.get("TOMORROW").toString());
+        Calendar calendar;
+        calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
+        Assert.assertEquals(calendar.getTime().toString(), myDate.get("TOMORROW").toString());
     }
 
     @Test
     public void getYesterdayShouldReturnTheCorrectDate() throws Exception {
         MyDate myDate = new MyDate();
-        Calendar c;
-        c = Calendar.getInstance();
-        c.add(Calendar.DAY_OF_YEAR, -1);
-        Assert.assertEquals(c.getTime().toString(), myDate.get("YESTERDAY").toString());
+        Calendar calendar;
+        calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR, -1);
+        Assert.assertEquals(calendar.getTime().toString(), myDate.get("YESTERDAY").toString());
     }
 
     @Test
     public void get100SecondsAgoShouldReturnTheCorrectDate() throws Exception {
         MyDate myDate = new MyDate();
-        Calendar c;
-        c = Calendar.getInstance();
-        c.add(Calendar.SECOND, -100);
-        Assert.assertEquals(c.getTime().toString(), myDate.get("100 seconds ago").toString());
+        Calendar calendar;
+        calendar = Calendar.getInstance();
+        calendar.add(Calendar.SECOND, -100);
+        Assert.assertEquals(calendar.getTime().toString(), myDate.get("100 seconds ago").toString());
     }
 
     @Test
     public void get100SecondsFromNowShouldReturnTheCorrectDate() throws Exception {
         MyDate myDate = new MyDate();
-        Calendar c;
-        c = Calendar.getInstance();
-        c.add(Calendar.SECOND, 100);
-        Assert.assertEquals(c.getTime().toString(), myDate.get("100 seconds from now").toString());
+        Calendar calendar;
+        calendar = Calendar.getInstance();
+        calendar.add(Calendar.SECOND, 100);
+        Assert.assertEquals(calendar.getTime().toString(), myDate.get("100 seconds from now").toString());
     }
 
     @Test
     public void get10MinutesAgoShouldReturnTheCorrectDate() throws Exception {
         MyDate myDate = new MyDate();
-        Calendar c;
-        c = Calendar.getInstance();
-        c.add(Calendar.MINUTE, -100);
-        Assert.assertEquals(c.getTime().toString(), myDate.get("100 minutes ago").toString());
+        Calendar calendar;
+        calendar = Calendar.getInstance();
+        calendar.add(Calendar.MINUTE, -100);
+        Assert.assertEquals(calendar.getTime().toString(), myDate.get("100 minutes ago").toString());
     }
 
     @Test
     public void get10MinutesFromNowShouldReturnTheCorrectDate() throws Exception {
         MyDate myDate = new MyDate();
-        Calendar c;
-        c = Calendar.getInstance();
-        c.add(Calendar.MINUTE, 100);
-        Assert.assertEquals(c.getTime().toString(), myDate.get("100 minutes from now").toString());
+        Calendar calendar;
+        calendar = Calendar.getInstance();
+        calendar.add(Calendar.MINUTE, 100);
+        Assert.assertEquals(calendar.getTime().toString(), myDate.get("100 minutes from now").toString());
     }
 
     @Test
     public void get5hoursAgoShouldReturnTheCorrectDate() throws Exception {
         MyDate myDate = new MyDate();
-        Calendar c;
-        c = Calendar.getInstance();
-        c.add(Calendar.HOUR, -5);
-        Assert.assertEquals(c.getTime().toString(), myDate.get("5 hours ago").toString());
+        Calendar calendar;
+        calendar = Calendar.getInstance();
+        calendar.add(Calendar.HOUR, -5);
+        Assert.assertEquals(calendar.getTime().toString(), myDate.get("5 hours ago").toString());
     }
 
 
     @Test
     public void get5HoursFromNowShouldReturnTheCorrectDate() throws Exception {
         MyDate myDate = new MyDate();
-        Calendar c;
-        c = Calendar.getInstance();
-        c.add(Calendar.HOUR, 5);
-        Assert.assertEquals(c.getTime().toString(), myDate.get("5 hours from now").toString());
+        Calendar calendar;
+        calendar = Calendar.getInstance();
+        calendar.add(Calendar.HOUR, 5);
+        Assert.assertEquals(calendar.getTime().toString(), myDate.get("5 hours from now").toString());
     }
 
     @Test
     public void get5DaysAgoShouldReturnTheCorrectDate() throws Exception {
         MyDate myDate = new MyDate();
-        Calendar c;
-        c = Calendar.getInstance();
-        c.add(Calendar.DAY_OF_YEAR, -5);
-        Assert.assertEquals(c.getTime().toString(), myDate.get("5 days ago").toString());
+        Calendar calendar;
+        calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR, -5);
+        Assert.assertEquals(calendar.getTime().toString(), myDate.get("5 days ago").toString());
     }
 
     @Test
     public void get5DaysFromNowShouldReturnTheCorrectDate() throws Exception {
         MyDate myDate = new MyDate();
-        Calendar c;
-        c = Calendar.getInstance();
-        c.add(Calendar.DAY_OF_YEAR, 5);
-        Assert.assertEquals(c.getTime().toString(), myDate.get("5 days from now").toString());
+        Calendar calendar;
+        calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR, 5);
+        Assert.assertEquals(calendar.getTime().toString(), myDate.get("5 days from now").toString());
     }
 
     @Test
     public void get5weekAgoShouldReturnTheCorrectDate() throws Exception {
         MyDate myDate = new MyDate();
-        Calendar c;
-        c = Calendar.getInstance();
-        c.add(Calendar.WEEK_OF_MONTH, -5);
-        Assert.assertEquals(c.getTime().toString(), myDate.get("5 weeks ago").toString());
+        Calendar calendar;
+        calendar = Calendar.getInstance();
+        calendar.add(Calendar.WEEK_OF_MONTH, -5);
+        Assert.assertEquals(calendar.getTime().toString(), myDate.get("5 weeks ago").toString());
     }
 
     @Test
     public void get5weekFromNowShouldReturnTheCorrectDate() throws Exception {
         MyDate myDate = new MyDate();
-        Calendar c;
-        c = Calendar.getInstance();
-        c.add(Calendar.WEEK_OF_MONTH, 5);
-        Assert.assertEquals(c.getTime().toString(), myDate.get("5 weeks from now").toString());
+        Calendar calendar;
+        calendar = Calendar.getInstance();
+        calendar.add(Calendar.WEEK_OF_MONTH, 5);
+        Assert.assertEquals(calendar.getTime().toString(), myDate.get("5 weeks from now").toString());
     }
 
     @Test
     public void get5monthsAgoShouldReturnTheCorrectDate() throws Exception {
         MyDate myDate = new MyDate();
-        Calendar c;
-        c = Calendar.getInstance();
-        c.add(Calendar.MONTH, -5);
-        Assert.assertEquals(c.getTime().toString(), myDate.get("5 months ago").toString());
+        Calendar calendar;
+        calendar = Calendar.getInstance();
+        calendar.add(Calendar.MONTH, -5);
+        Assert.assertEquals(calendar.getTime().toString(), myDate.get("5 months ago").toString());
     }
 
     @Test
     public void get5monthsFromNowShouldReturnTheCorrectDate() throws Exception {
         MyDate myDate = new MyDate();
-        Calendar c;
-        c = Calendar.getInstance();
-        c.add(Calendar.MONTH, 5);
-        Assert.assertEquals(c.getTime().toString(), myDate.get("5 months from now").toString());
+        Calendar calendar;
+        calendar = Calendar.getInstance();
+        calendar.add(Calendar.MONTH, 5);
+        Assert.assertEquals(calendar.getTime().toString(), myDate.get("5 months from now").toString());
     }
 
     @Test
     public void get5yearsAgoShouldReturnTheCorrectDate() throws Exception {
         MyDate myDate = new MyDate();
-        Calendar c;
-        c = Calendar.getInstance();
-        c.add(Calendar.YEAR, -5);
-        Assert.assertEquals(c.getTime().toString(), myDate.get("5 years ago").toString());
+        Calendar calendar;
+        calendar = Calendar.getInstance();
+        calendar.add(Calendar.YEAR, -5);
+        Assert.assertEquals(calendar.getTime().toString(), myDate.get("5 years ago").toString());
     }
 
     @Test
     public void get5yearsFromNowShouldReturnTheCorrectDate() throws Exception {
         MyDate myDate = new MyDate();
-        Calendar c;
-        c = Calendar.getInstance();
-        c.add(Calendar.YEAR, 5);
-        System.out.println(c.getTime().toString());
-        Assert.assertEquals(c.getTime().toString(), myDate.get("5 years from now").toString());
+        Calendar calendar;
+        calendar = Calendar.getInstance();
+        calendar.add(Calendar.YEAR, 5);
+        System.out.println(calendar.getTime().toString());
+        Assert.assertEquals(calendar.getTime().toString(), myDate.get("5 years from now").toString());
     }
 
     @DataProvider(name = "invalidGetData")
@@ -286,7 +285,7 @@ public class MyDateTests {
         };
     }
 
-    @Test(dataProvider = "invalidGetData",expectedExceptions = Exception.class)
+    @Test(dataProvider = "invalidGetData", expectedExceptions = Exception.class)
     public void getShouldReturnAnException(String input) throws Exception {
         MyDate myDate = new MyDate();
         myDate.get(input);
@@ -295,40 +294,40 @@ public class MyDateTests {
     @Test
     public void get_02_02_2000_ShouldReturnTheCorrectDate() throws Exception {
         MyDate myDate = new MyDate();
-        Calendar c;
-        c = Calendar.getInstance();
+        Calendar calendar;
+        calendar = Calendar.getInstance();
         //Calendar month index starts at 0
-        c.set(2000, 01, 02, 0, 0, 0);
+        calendar.set(2000, 01, 02, 0, 0, 0);
         String actual = myDate.get("02/02/2000").toString();
-        String expected = c.getTime().toString().trim();
+        String expected = calendar.getTime().toString().trim();
         Assert.assertEquals(actual, expected);
     }
 
     @Test
     public void get_12_31_1800_ShouldReturnTheCorrectDate() throws Exception {
         MyDate myDate = new MyDate();
-        Calendar c;
-        c = Calendar.getInstance();
+        Calendar calendar;
+        calendar = Calendar.getInstance();
         //Calendar month index starts at 0
-        c.set(1900, 11, 31, 0, 0, 0);
+        calendar.set(1900, 11, 31, 0, 0, 0);
         String actual = myDate.get("12/31/1900").toString();
-        String expected = c.getTime().toString().trim();
+        String expected = calendar.getTime().toString().trim();
         Assert.assertEquals(actual, expected);
     }
 
     @Test(expectedExceptions = Exception.class)
     public void get_invalid_2000_02_01_ShouldThrowException() throws Exception {
         MyDate myDate = new MyDate();
-        Calendar c;
-        c = Calendar.getInstance();
+        Calendar calendar;
+        calendar = Calendar.getInstance();
         String actual = myDate.get("2000/02/01").toString();
     }
 
     @Test(expectedExceptions = Exception.class)
     public void get_invalid_13_01_2022_ShouldThrowException() throws Exception {
         MyDate myDate = new MyDate();
-        Calendar c;
-        c = Calendar.getInstance();
+        Calendar calendar;
+        calendar = Calendar.getInstance();
         String actual = myDate.get("13/01/2022").toString();
     }
 }
