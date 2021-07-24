@@ -28,16 +28,16 @@ public final class WebDriverManager {
      * @return WebDriver
      * @param browser
      */
-    public static WebDriver getDriver(final Browser browser) {
+    public static WebDriver getDriver(Browser browser) {
         if (driver == null) {
             System.setProperty(browser.getDriverName(),
                     browser.getDriverPath());
             driver = browser.getDriver();
+            driver.manage().window().maximize();
+            driver.manage().deleteAllCookies();
+            driver.manage().timeouts().implicitlyWait(ConfigManager.getConfiguration()
+                    .implicitWaitTime(), TimeUnit.SECONDS);
         }
-        driver.manage().window().maximize();
-        driver.manage().deleteAllCookies();
-        driver.manage().timeouts().implicitlyWait(ConfigManager.getConfiguration()
-                .implicitWaitTime(), TimeUnit.SECONDS);
         return driver;
     }
 
@@ -47,6 +47,7 @@ public final class WebDriverManager {
      * @return WebDriver
      */
     public static WebDriver getDriver() {
+        getDriver(new ChromeBrowser());
         return driver;
     }
 
