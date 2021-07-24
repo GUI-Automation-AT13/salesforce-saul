@@ -23,7 +23,7 @@ public abstract class BasePage {
     private PageTransporter pageTransporter = new PageTransporter();
 
     /**
-     * Method to wait for a page to load.
+     * Waits for a page to load.
      */
     protected abstract void waitForPageToLoad();
 
@@ -62,7 +62,7 @@ public abstract class BasePage {
     }
 
     /**
-     * Return the PageTransporter instance.
+     * Returns the PageTransporter instance.
      * @return PageTransporter
      */
     public PageTransporter getPageTransporter() {

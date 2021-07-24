@@ -16,10 +16,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class IndividualFormPage extends BasePage {
 
     private By salutationSelector = By.cssSelector(".salutation a");
-
-    private final String SALUTATION_OPTION = "[title=\"%s\"]";
-    private final String CHECKBOX = "//div[label[contains(.,\"%s\")]]/input";
-
     private By mrOption = By.cssSelector("[title=\"Mr.\"]");
     private By msOption = By.cssSelector("[title=\"Ms.\"]");
     private By mrsOption = By.cssSelector("[title=\"Mrs.\"]");
