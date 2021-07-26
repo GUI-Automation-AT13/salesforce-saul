@@ -10,6 +10,7 @@ package org.salesforce.scripts.Individual;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import salesforce.gui.pages.IndividualFormPage;
 import salesforce.gui.pages.IndividualListPage;
 import salesforce.gui.pages.IndividualRecordPage;
@@ -25,27 +26,44 @@ public class CreateIndividualTest extends Basetest {
         String fullname = "Paul";
 
         String resultMessage = individualFormPage.getCreatedSuccessMessage();
-        Assert.assertTrue(resultMessage.contains(expected));
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(resultMessage.contains(expected));
 
         String headerNameText = individualRecordPage.getNameHeaderText();
-        Assert.assertEquals(headerNameText, fullname);
+        softAssert.assertEquals(headerNameText, fullname);
 
         individualRecordPage.clickonDetailsTab();
         String nameDetail = individualRecordPage.getNameDetail();
-        Assert.assertEquals(nameDetail, fullname);
+        softAssert.assertEquals(nameDetail, fullname);
 
         IndividualListPage individualListPage = pageTransporter.navigateToIndividualListPage();
-        Assert.assertTrue(individualListPage.isThereRecordWithName(fullname));
+        softAssert.assertTrue(individualListPage.isThereRecordWithName(fullname));
+        softAssert.assertAll();
     }
 
     @Test(groups = "Create")
-    public void createIndividualWithLastnameAndFirstname() {
+    public void createIndividualWithAllFields() {
         IndividualFormPage individualFormPage = pageTransporter.navigateToIndividualFormPage();
         individualFormPage.setLastnameTextbox("Paul");
         individualFormPage.setFirstnameTextbox("Jake");
+        individualFormPage.clickOnBlockGeolocationCheckbox();
+        individualFormPage.clickOnDontMarketCheckbox();
+        individualFormPage.clickOnDontProcessCheckbox();
+        individualFormPage.clickOnDontProfileCheckbox();
+        individualFormPage.clickOnDontTrackCheckbox();
+        individualFormPage.clickOnExportIndividualDataCheckbox();
+        individualFormPage.clickOnOkToStorePiiDataCheckbox();
+        individualFormPage.clickOnForgetThisIndividualCheckbox();
+        individualFormPage.clickOnSalutationDropDownMenu();
+        individualFormPage.clickOnMrOption();
+        individualFormPage.setBirthdateDateField("1/7/2000");
+        individualFormPage.clickOnIndividualAgeSelector();
+        individualFormPage.clickOnAge16Option();
+
         IndividualRecordPage individualRecordPage = individualFormPage.clickOnsave();
         String expected = "was created.";
-        String fullName = "Jake Paul";
+        String fullName = "Mr. Jake Paul";
+        String name = "Jake Paul";
 
         String resultMessage = individualFormPage.getCreatedSuccessMessage();
         Assert.assertTrue(resultMessage.contains(expected));
@@ -58,6 +76,6 @@ public class CreateIndividualTest extends Basetest {
         Assert.assertEquals(nameDetail, fullName);
 
         IndividualListPage individualListPage = pageTransporter.navigateToIndividualListPage();
-        Assert.assertTrue(individualListPage.isThereRecordWithName(fullName));
+        Assert.assertTrue(individualListPage.isThereRecordWithName(name));
     }
 }

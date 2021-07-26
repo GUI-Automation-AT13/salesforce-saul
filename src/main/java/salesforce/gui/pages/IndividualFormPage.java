@@ -157,7 +157,7 @@ public class IndividualFormPage extends BasePage {
      */
     public void clickOnForgetThisIndividualCheckbox() {
         findElement(BySelector
-                .withParameter(generalCheckboxSelector, "Forget This Individual")).click();
+                .withParameter(generalCheckboxSelector, "Forget this Individual")).click();
     }
 
     /**

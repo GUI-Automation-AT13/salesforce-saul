@@ -11,13 +11,16 @@ package org.salesforce.scripts.Individual;
 import config.ConfigManager;
 import config.PropertiesConfig;
 import core.selenium.ChromeBrowser;
-import salesforce.gui.pages.*;
+import salesforce.gui.pages.PageTransporter;
 import core.selenium.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+import salesforce.gui.pages.HomePage;
+import salesforce.gui.pages.IndividualListPage;
+import salesforce.gui.pages.LoginPage;
 
 public class Basetest {
 
