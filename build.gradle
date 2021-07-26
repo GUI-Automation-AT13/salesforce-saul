@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'checkstyle'
+    id 'info.solidsoft.pitest' version '1.5.1'
 }
 
 group 'org.example'
@@ -10,11 +12,40 @@ repositories {
 }
 
 dependencies {
-    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '2.41.0'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-support', version: '3.141.59'
     implementation 'org.testng:testng:7.4.0'
     implementation group: 'org.aeonbits.owner', name: 'owner-java8', version: '1.0.12'
 }
 
 test {
     useTestNG()
+    testLogging {
+        events "failed"
+        exceptionFormat "full"
+    }
 }
+
+checkstyle {
+    toolVersion '8.34'
+    configFile file('config/checkstyle/checkstyle.xml')
+    checkstyleMain.source = "src/main/"
+}
+
+pitest {
+    testPlugin='testng'
+    targetClasses = ['utils.MyDate']
+    targetTests = ['unit.tests.utils.MyDateTests*']
+    threads = 4
+    outputFormats = ['XML', 'HTML']
+}
+
+checkstyleMain {
+    source = 'src/main/java'
+}
+
+checkstyleTest {
+    source = 'src/test/java'
+}
+
+test.finalizedBy("checkstyleMain")
