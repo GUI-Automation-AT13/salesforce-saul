@@ -42,8 +42,8 @@ public class IndividualRecordPage extends BasePage {
      * @return a HomePage instance.
      */
     public IndividualListPage deleteCreatedIndividual() {
-        findElement(deleteHeaderButton).click();
-        findElement(confirmDeleteIndividualButton).click();
+        getWebElementActions().clickOnElement(deleteHeaderButton);
+        getWebElementActions().clickOnElement(confirmDeleteIndividualButton);
         return new IndividualListPage();
     }
 
@@ -54,7 +54,7 @@ public class IndividualRecordPage extends BasePage {
      */
     public String getDeletedSuccessMessage() {
         getWait().until(ExpectedConditions.visibilityOf(findElement(deletedSuccessMessage)));
-        return findElement(deletedSuccessMessage).getText();
+        return getWebElementActions().getText(deletedSuccessMessage);
     }
 
     /**
@@ -63,70 +63,70 @@ public class IndividualRecordPage extends BasePage {
      * @return String
      */
     public String getNameHeaderText() {
-        return findElement(nameHeaderLabel).getText();
+        return getWebElementActions().getText(nameHeaderLabel);
     }
 
     /**
      * Clicks on the Edit button in the header.
      */
     public void clickEditHeaderButton() {
-        findElement(editHeaderButton).click();
+        getWebElementActions().clickOnElement(editHeaderButton);
     }
 
     /**
      * Clicks on the Delete button in the header.
      */
     public void clickDeleteHeaderButton() {
-        findElement(deleteHeaderButton).click();
+        getWebElementActions().clickOnElement(deleteHeaderButton);
     }
 
     /**
      * Clicks on the Clone button in the header.
      */
     public void clickCloneHeaderButton() {
-        findElement(cloneHeaderButton).click();
+        getWebElementActions().clickOnElement(cloneHeaderButton);
     }
 
     /**
      * Clicks on the relatedIndividualHistoryLink.
      */
     public void clickRelatedIndividualHistoryLink() {
-        findElement(BySelector.withParameter(relatedFeatureLink, "Individual History")).click();
+        getWebElementActions().clickOnElement(relatedFeatureLink, "Individual History");
     }
 
     /**
      * Clicks on the relatedContactsLink.
      */
     public void clickRelatedContactsLink() {
-        findElement(BySelector.withParameter(relatedFeatureLink, "Contacts")).click();
+        getWebElementActions().clickOnElement(relatedFeatureLink, "Contacts");
     }
 
     /**
      * Clicks on the relatedLeadsLink.
      */
     public void clickRelatedLeadsLink() {
-        findElement(BySelector.withParameter(relatedFeatureLink, "Leads")).click();
+        getWebElementActions().clickOnElement(relatedFeatureLink, "Leads");
     }
 
     /**
      * Clicks on the relatedContactPointEmailsLink.
      */
     public void clickRelatedContactPointEmailsLink() {
-        findElement(BySelector.withParameter(relatedFeatureLink, "Contact Point Emails")).click();
+        getWebElementActions().clickOnElement(relatedFeatureLink, "Contact Point Emails");
     }
 
     /**
      * Clicks on the relatedContactPointPhonesLink.
      */
     public void clickRelatedContactPointPhonesLink() {
-        findElement(BySelector.withParameter(relatedFeatureLink, "Contact Point Phones")).click();
+        getWebElementActions().clickOnElement(relatedFeatureLink, "Contact Point Phones");
     }
 
     /**
      * Clicks on the Details tab.
      */
     public void clickonDetailsTab() {
-        findElement(detailsTabButton).click();
+        getWebElementActions().clickOnElement(detailsTabButton);
     }
 
     /**
@@ -135,7 +135,7 @@ public class IndividualRecordPage extends BasePage {
      * @return String
      */
     public String getNameDetail() {
-        return findElement(labelNameDetail).getText();
+        return getWebElementActions().getText(labelNameDetail);
     }
 
     /**
@@ -144,7 +144,7 @@ public class IndividualRecordPage extends BasePage {
      * @return String
      */
     public String getBrithdateDetail() {
-        return findElement(labelBirthdateDetail).getText();
+        return getWebElementActions().getText(labelBirthdateDetail);
     }
 
     /**
@@ -153,7 +153,7 @@ public class IndividualRecordPage extends BasePage {
      * @return boolean
      */
     public boolean checkIfDontProcess() {
-        return findElement(BySelector.withParameter(checkboxDetail, "Don't Process")).isSelected();
+        return getWebElementActions().isSelected(BySelector.withParameter(checkboxDetail, "Don't Process"));
     }
 
     /**
@@ -162,7 +162,7 @@ public class IndividualRecordPage extends BasePage {
      * @return boolean
      */
     public boolean checkIfDontMarket() {
-        return findElement(BySelector.withParameter(checkboxDetail, "Don't Market")).isSelected();
+        return getWebElementActions().isSelected(BySelector.withParameter(checkboxDetail, "Don't Market"));
     }
 
     /**
@@ -171,8 +171,7 @@ public class IndividualRecordPage extends BasePage {
      * @return boolean
      */
     public boolean checkIfExportIndividualsData() {
-        return findElement(BySelector.withParameter(checkboxDetail, "Export Individual's Data"))
-                .isSelected();
+        return getWebElementActions().isSelected(BySelector.withParameter(checkboxDetail, "Export Individual's Data"));
     }
 
     /**
@@ -181,8 +180,8 @@ public class IndividualRecordPage extends BasePage {
      * @return boolean
      */
     public boolean checkIfOkToStorePiiDataElsewhere() {
-        return findElement(BySelector.withParameter(checkboxDetail, "OK to Store PII Data Elsewhere"))
-                .isSelected();
+        return getWebElementActions().isSelected(BySelector.
+                withParameter(checkboxDetail, "OK to Store PII Data Elsewhere"));
     }
 
     /**
@@ -191,8 +190,8 @@ public class IndividualRecordPage extends BasePage {
      * @return boolean
      */
     public boolean checkIfBlockGeolocationTracking() {
-        return findElement(BySelector.withParameter(checkboxDetail, "Block Geolocation Tracking"))
-                .isSelected();
+        return getWebElementActions().isSelected(BySelector
+                .withParameter(checkboxDetail, "Block Geolocation Tracking"));
     }
 
     /**
@@ -201,7 +200,7 @@ public class IndividualRecordPage extends BasePage {
      * @return boolean
      */
     public boolean checkIfDontProfile() {
-        return findElement(BySelector.withParameter(checkboxDetail, "Don't Profile")).isSelected();
+        return getWebElementActions().isSelected(BySelector.withParameter(checkboxDetail, "Don't Profile"));
     }
 
     /**
@@ -210,7 +209,7 @@ public class IndividualRecordPage extends BasePage {
      * @return boolean
      */
     public boolean checkIfDontTrack() {
-        return findElement(BySelector.withParameter(checkboxDetail, "Don't Track")).isSelected();
+        return getWebElementActions().isSelected(BySelector.withParameter(checkboxDetail, "Don't Track"));
     }
 
     /**
@@ -219,7 +218,8 @@ public class IndividualRecordPage extends BasePage {
      * @return boolean
      */
     public boolean checkIfForgetThisIndividual() {
-        return findElement(BySelector.withParameter(checkboxDetail, "Forget This Individual")).isSelected();
+        return getWebElementActions().isSelected(BySelector
+                .withParameter(checkboxDetail, "Forget This Individual"));
     }
 
     /**
@@ -228,35 +228,35 @@ public class IndividualRecordPage extends BasePage {
      * @return String
      */
     public String getIndividualAgeDetail() {
-        return findElement(labelIndividualsAgeDetail).getText();
+        return getWebElementActions().getText(labelIndividualsAgeDetail);
     }
 
     /**
      * Clicks on the new Contact button.
      */
     public void clickOnNewContactButton() {
-        findElement(BySelector.withParameter(newFeatureButton, "Contact")).click();
+        getWebElementActions().clickOnElement(newFeatureButton, "Contact");
     }
 
     /**
      * Clicks on the new Lead button.
      */
     public void clickOnNewLeadButton() {
-        findElement(BySelector.withParameter(newFeatureButton, "Lead")).click();
+        getWebElementActions().clickOnElement(newFeatureButton, "Lead");
     }
 
     /**
      * Clicks on the new Contact Point Emails button.
      */
     public void clickNewContactPointEmailButton() {
-        findElement(BySelector.withParameter(newFeatureButton, "Contact Point Emails")).click();
+        getWebElementActions().clickOnElement(newFeatureButton, "Contact Point Emails");
     }
 
     /**
      * Clicks on the new Contact Point Phones button.
      */
     public void clickNewContactPointPhoneButton() {
-        findElement(BySelector.withParameter(newFeatureButton, "Contact Point Phones")).click();
+        getWebElementActions().clickOnElement(newFeatureButton, "Contact Point Phones");
     }
 
     /**

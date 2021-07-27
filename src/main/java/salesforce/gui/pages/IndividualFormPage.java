@@ -8,9 +8,12 @@
 
 package salesforce.gui.pages;
 
-import core.selenium.BySelector;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import salesforce.gui.Entities.IndividualEntity;
+
+import java.util.HashMap;
+import java.util.Set;
 
 public class IndividualFormPage extends BasePage {
 
@@ -35,42 +38,42 @@ public class IndividualFormPage extends BasePage {
      * Clicks the saluatation selector.
      */
     public void clickOnSalutationDropDownMenu() {
-        findElement(salutationSelector).click();
+        getWebElementActions().clickOnElement(salutationSelector);
     }
 
     /**
      * Clicks the Mr. option
      */
     public void clickOnMrOption() {
-        findElement(BySelector.withParameter(generalSalutationOptionSelector, "Mr.")).click();
+        getWebElementActions().clickOnElement(generalSalutationOptionSelector, "Mr.");
     }
 
     /**
      * Clicks the Mrs. option
      */
     public void clickOnMrsOption() {
-        findElement(BySelector.withParameter(generalSalutationOptionSelector, "Mrs.")).click();
+        getWebElementActions().clickOnElement(generalSalutationOptionSelector, "Mrs.");
     }
 
     /**
      * Clicks the Ms. option
      */
     public void clickOnMsOption() {
-        findElement(BySelector.withParameter(generalSalutationOptionSelector, "Ms.")).click();
+        getWebElementActions().clickOnElement(generalSalutationOptionSelector, "Ms.");
     }
 
     /**
      * Clicks the Dr. option
      */
     public void clickOnDrOption() {
-        findElement(BySelector.withParameter(generalSalutationOptionSelector, "Dr.")).click();
+        getWebElementActions().clickOnElement(generalSalutationOptionSelector, "Dr.");
     }
 
     /**
      * Clicks the Prof. option
      */
     public void clickOnProfOption() {
-        findElement(BySelector.withParameter(generalSalutationOptionSelector, "Prof.")).click();
+        getWebElementActions().clickOnElement(generalSalutationOptionSelector, "Prof.");
     }
 
     /**
@@ -79,7 +82,7 @@ public class IndividualFormPage extends BasePage {
      * @param firstname
      */
     public void setFirstnameTextbox(final String firstname) {
-        getWebElementAction().setInputField(findElement(firstnameTextbox), firstname);
+        getWebElementActions().setInputField(firstnameTextbox, firstname);
     }
 
     /**
@@ -88,7 +91,7 @@ public class IndividualFormPage extends BasePage {
      * @param lastname
      */
     public void setLastnameTextbox(final String lastname) {
-        getWebElementAction().setInputField(findElement(lastnameTextbox), lastname);
+        getWebElementActions().setInputField(lastnameTextbox, lastname);
     }
 
     /**
@@ -97,106 +100,105 @@ public class IndividualFormPage extends BasePage {
      * @param date
      */
     public void setBirthdateDateField(final String date) {
-        getWebElementAction().setInputField(findElement(birthdateDateField), date);
+        getWebElementActions().setInputField(birthdateDateField, date);
     }
 
     /**
      * Clicks on the Don't Process checkbox.
      */
     public void clickOnDontProcessCheckbox() {
-        findElement(BySelector.withParameter(generalCheckboxSelector, "Don't Process")).click();
+        getWebElementActions().clickOnElement(generalCheckboxSelector, "Don't Process");
     }
 
     /**
      * Clicks on the Don't Market checkbox.
      */
     public void clickOnDontMarketCheckbox() {
-        findElement(BySelector.withParameter(generalCheckboxSelector, "Don't Market")).click();
+        getWebElementActions().clickOnElement(generalCheckboxSelector, "Don't Market");
     }
 
     /**
      * Clicks on the Export Individual's Data checkbox.
      */
     public void clickOnExportIndividualDataCheckbox() {
-        findElement(BySelector
-                .withParameter(generalCheckboxSelector, "Export Individual's Data")).click();
+        getWebElementActions().clickOnElement(generalCheckboxSelector, "Export Individual's Data");
     }
 
     /**
      * Clicks on the OK to Store PII Data checkbox.
      */
     public void clickOnOkToStorePiiDataCheckbox() {
-        findElement(BySelector
-                .withParameter(generalCheckboxSelector, "OK to Store PII Data")).click();
+        getWebElementActions().clickOnElement(generalCheckboxSelector, "OK to Store PII Data");
     }
 
     /**
      * Clicks on the Block Geolocation checkbox.
      */
     public void clickOnBlockGeolocationCheckbox() {
-        findElement(BySelector
-                .withParameter(generalCheckboxSelector, "Block Geolocation")).click();
+        getWebElementActions().clickOnElement(generalCheckboxSelector, "Block Geolocation");
     }
 
     /**
      * Clicks on the Don't Profile checkbox.
      */
     public void clickOnDontProfileCheckbox() {
-        findElement(BySelector.withParameter(generalCheckboxSelector, "Don't Profile")).click();
+        getWebElementActions().clickOnElement(generalCheckboxSelector, "Don't Profile");
     }
 
     /**
      * Clicks on the Don't Track Checkbox.
      */
     public void clickOnDontTrackCheckbox() {
-        findElement(BySelector.withParameter(generalCheckboxSelector, "Don't Track")).click();
+        getWebElementActions().clickOnElement(generalCheckboxSelector, "Don't Track");
     }
 
     /**
      * Clicks on the Forget This Individual checkbox.
      */
     public void clickOnForgetThisIndividualCheckbox() {
-        findElement(BySelector
-                .withParameter(generalCheckboxSelector, "Forget this Individual")).click();
+        getWebElementActions().clickOnElement(generalCheckboxSelector, "Forget this Individual");
     }
 
     /**
      * Clicks on the IndividualAgeSelector.
      */
     public void clickOnIndividualAgeSelector() {
-        findElement(individualAgeSelector).click();
+        getWebElementActions().clickOnElement(individualAgeSelector);
     }
 
     /**
      * Clicks on the Age13 option.
      */
     public void clickOnAge13Option() {
-        findElement(age13Option).click();
+        getWebElementActions().clickOnElement(age13Option);
     }
 
     /**
      * Clicks on the Age16 option.
      */
     public void clickOnAge16Option() {
-        findElement(age16Option).click();
+        getWebElementActions().clickOnElement(age16Option);
     }
 
     /**
      * Clicks on the save button.
+     *
      * @return IndividualRecordPage
      */
     public IndividualRecordPage clickOnsave() {
-        findElement(saveButton).click();
+        getWebElementActions().clickOnElement(saveButton);
         return new IndividualRecordPage();
     }
 
     /**
      * Returns an alert message.
+     *
      * @return String
      */
     public String getCreatedSuccessMessage() {
         getWait().until(ExpectedConditions.visibilityOf(findElement(createdSuccessMessage)));
-        return findElement(createdSuccessMessage).getText();
+        return getWebElementActions().getText(createdSuccessMessage);
+        //return findElement(createdSuccessMessage).getText();
     }
 
     /**
@@ -205,15 +207,31 @@ public class IndividualFormPage extends BasePage {
      * @return a boolean
      */
     public Boolean isVisibleIndividualNameInHeader() {
-        return findElement(createdIndividualLabel).isDisplayed();
+        return getWebElementActions().isDisplayed(createdIndividualLabel);
     }
 
     /**
      * Returns the text of the IndividualName element.
+     *
      * @return String
      */
     public String getCreatedIndividualNameInHeader() {
-        return findElement(createdIndividualLabel).getText();
+        return getWebElementActions().getText(createdIndividualLabel);
+    }
+
+    /**
+     * Creates an individual with the given parameters in a map.
+     *
+     * @param fields
+     * @param entity
+     * @return IndividualFormPage
+     */
+    public IndividualFormPage createIndividual(final Set<String> fields, final IndividualEntity entity) {
+        HashMap<String, Runnable> strategyMap = new HashMap<>();
+        strategyMap.put("name", () -> setFirstnameTextbox(entity.getFirstname()));
+
+        fields.forEach(field -> strategyMap.get(field).run());
+        return this;
     }
 
     /**

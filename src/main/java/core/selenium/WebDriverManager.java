@@ -28,7 +28,7 @@ public final class WebDriverManager {
      * @return WebDriver
      * @param browser
      */
-    public static WebDriver getDriver(Browser browser) {
+    public static WebDriver getDriver(final Browser browser) {
         if (driver == null) {
             System.setProperty(browser.getDriverName(),
                     browser.getDriverPath());

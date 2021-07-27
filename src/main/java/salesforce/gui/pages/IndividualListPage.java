@@ -16,7 +16,12 @@ public class IndividualListPage extends BasePage {
 
     private By recentlyViewedSpan = By.cssSelector("span.triggerLinkText");
     private By deletedSuccessMessage = By.xpath("//span[contains(.,\"was deleted.\")]");
+    private By firstRowDropDownMenu = By.xpath("//tbody/tr[1]//span/span[contains"
+            + "(.,\"Show Actions\")]/preceding-sibling::span");
+    private By firstRowDropDownMenuUpdated = By.xpath("//tbody/tr[1]//a[@title="
+            + "\"Show 2 more actions\"]/ancestor::div[@id and @data-interactive-uid]");
     private WebElement dropDownMenu;
+    private By deleteButtonDropDownMenu = By.xpath("//span[contains(text(),\"Delete\")]");
 
     /**
      * Checks if the view list span is visible.
@@ -31,23 +36,28 @@ public class IndividualListPage extends BasePage {
      * Deletes the last created or modified record.
      */
     public void deleteLastModifiedRecord() {
-        findElement(By.xpath("//tbody/tr[1]//span/span[contains(.,\"Show Actions\")]"
-                + "/preceding-sibling::span")).click();
-        dropDownMenu = getDriver().findElement(By.xpath("//tbody/tr[1]//a[@title="
-                + "\"Show 2 more actions\"]/ancestor::div[@id and @data-interactive-uid]"));
+        getWebElementActions().clickOnElement(firstRowDropDownMenu);
+//        findElement(By.xpath("//tbody/tr[1]//span/span[contains(.,\"Show Actions\")]"
+//                + "/preceding-sibling::span")).click();
+        dropDownMenu = getWebElementActions().getElement(firstRowDropDownMenuUpdated);
+//        dropDownMenu = getDriver().findElement(By.xpath("//tbody/tr[1]//a[@title="
+//                + "\"Show 2 more actions\"]/ancestor::div[@id and @data-interactive-uid]"));
         clickOnARecordDropDownMenuDelete();
     }
 
     /**
      * Returns an alert message.
+     *
      * @return String
      */
     public String getDeletedSuccessMessage() {
         getWait().until(ExpectedConditions.visibilityOf(findElement(deletedSuccessMessage)));
         return findElement(deletedSuccessMessage).getText();
     }
+
     /**
      * Clicks on a record from the list of Individual records given the name.
+     *
      * @param name
      */
     public void clickOnRecordByName(final String name) {
@@ -56,6 +66,7 @@ public class IndividualListPage extends BasePage {
 
     /**
      * Search for a record given the name.
+     *
      * @param name
      * @return boolean
      */
@@ -65,6 +76,7 @@ public class IndividualListPage extends BasePage {
 
     /**
      * Clicks on options Drop down menu options given the name of record.
+     *
      * @param name
      */
     public void clickOnARecordDropDownMenuOption(final String name) {
@@ -86,10 +98,13 @@ public class IndividualListPage extends BasePage {
      * Click on a record Drop down menu Delete.
      */
     public void clickOnARecordDropDownMenuDelete() {
-        getWait().until(ExpectedConditions.visibilityOf(dropDownMenu));
-        findElement(By.cssSelector("div[aria-labelledby="
-                + "\"" + dropDownMenu.getAttribute("id") + "\"] a[title=\"Delete\"]")).click();
-        findElement(By.xpath("//span[contains(text(),\"Delete\")]")).click();
+        //getWait().until(ExpectedConditions.visibilityOf(dropDownMenu));
+        getWebElementActions().clickOnElement(By.cssSelector("div[aria-labelledby="
+                + "\"" + dropDownMenu.getAttribute("id") + "\"] a[title=\"Delete\"]"));
+//        findElement(By.cssSelector("div[aria-labelledby="
+//                + "\"" + dropDownMenu.getAttribute("id") + "\"] a[title=\"Delete\"]")).click();
+        getWebElementActions().clickOnElement(deleteButtonDropDownMenu);
+//        findElement(By.xpath("//span[contains(text(),\"Delete\")]")).click();
     }
 
     /**

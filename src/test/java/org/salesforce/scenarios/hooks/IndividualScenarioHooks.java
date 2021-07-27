@@ -6,28 +6,29 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package scenarios.hooks;
+package org.salesforce.scenarios.hooks;
 
 import config.ConfigManager;
-import config.PropertiesConfig;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 import salesforce.gui.pages.*;
 
-public class CreateIndividualScenarioHooks {
+public class IndividualScenarioHooks {
 
+    private Logger logger = LogManager.getLogger(getClass());
     private PageTransporter pageTransporter;
     private LoginPage loginPage;
     private IndividualFormPage individualFormPage;
 
-    public CreateIndividualScenarioHooks(PageTransporter pageTransporter) {
+    public IndividualScenarioHooks(PageTransporter pageTransporter) {
         this.pageTransporter = pageTransporter;
     }
 
     @Before(order  = 1)
     public void setUp() {
-        System.out.println("==================LOGGING------------------");
         login();
     }
 

@@ -20,7 +20,7 @@ public abstract class BasePage {
 
     private WebDriver driver = WebDriverManager.getDriver();
     private WebDriverWait wait = WebDriverManager.getDriverWait();
-    private WebElementAction webElementAction = new WebElementAction();
+    private WebElementAction webElementActions = new WebElementAction();
     private Actions action = new Actions(WebDriverManager.getDriver());
     private PageTransporter pageTransporter = new PageTransporter();
 
@@ -52,8 +52,8 @@ public abstract class BasePage {
      *
      * @return WebElementAction
      */
-    public WebElementAction getWebElementAction() {
-        return webElementAction;
+    public WebElementAction getWebElementActions() {
+        return webElementActions;
     }
 
     /**

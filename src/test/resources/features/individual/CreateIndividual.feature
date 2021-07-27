@@ -1,6 +1,6 @@
 Feature: Create Individual
 
-  @CreateIndividual
+  @CreateIndividual @SmokeTest
   Scenario: Create an Individual with required fields
     Given I go to the new Individual formular
     When I set the lastname "Paul"

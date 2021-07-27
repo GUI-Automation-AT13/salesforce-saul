@@ -6,17 +6,25 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package scenarios.steps;
+package org.salesforce.scenarios.steps;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.openqa.selenium.json.Json;
 import org.testng.Assert;
+import salesforce.gui.Entities.IndividualEntity;
 import salesforce.gui.pages.IndividualFormPage;
 import salesforce.gui.pages.PageTransporter;
 
+import java.util.Map;
+
 public class CreateIndividualSteps {
 
+    private Logger logger = LogManager.getLogger(getClass());
     private PageTransporter pageTransporter;
     private IndividualFormPage individualFormPage;
 
@@ -35,6 +43,15 @@ public class CreateIndividualSteps {
         individualFormPage.setLastnameTextbox(name);
         individualFormPage.clickOnsave();
     }
+
+    @When("^I create an individual$")
+    public void iCreateAnIndividual(final Map<String, String> table) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        IndividualEntity individualEntity = objectMapper.convertValue(table, IndividualEntity.class);
+        //IndividualEntity individualEntity = new Json().Map(table);
+        individualFormPage.createIndividual(table.keySet(), individualEntity);
+    }
+
     @Then("^The Individual's name is displayed in the header$")
     public void theIndividualsNameIsDisplayedInTheHeader() {
         String resultMessage = individualFormPage.getCreatedSuccessMessage();

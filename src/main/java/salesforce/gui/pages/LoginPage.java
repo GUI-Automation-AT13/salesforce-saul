@@ -23,7 +23,7 @@ public class LoginPage extends BasePage {
      * @param username
      */
     public void setUsernameTextbox(final String username) {
-        getWebElementAction().setInputField(findElement(usernameTextbox), username);
+        getWebElementActions().setInputField(usernameTextbox, username);
     }
 
     /**
@@ -32,7 +32,7 @@ public class LoginPage extends BasePage {
      * @param password
      */
     public void setPasswordTextbox(final String password) {
-        getWebElementAction().setInputField(findElement(passwordTextbox), password);
+        getWebElementActions().setInputField(passwordTextbox, password);
     }
 
     /**
@@ -41,7 +41,7 @@ public class LoginPage extends BasePage {
      * @return HomePage
      */
     public HomePage login() {
-        findElement(loginButton).click();
+        getWebElementActions().clickOnElement(loginButton);
         return new HomePage();
     }
 
