@@ -1,9 +1,9 @@
 Feature: Create Individual
 
   @CreateIndividual @RegressionTest
-  Scenario Outline: Create an Individual with given fields
-    Given I go to the new Individual formular
-    When I create an Individual with the following values
+    Scenario Outline: Create a Salesforce Individual object
+    Given I navigate to the new Individual page
+    When I create a new Individual record with the following parameters
       | salutation                | <salutation>                |
       | lastname                  | <lastname>                  |
       | firstname                 | <firstname>                 |
@@ -17,9 +17,21 @@ Feature: Create Individual
       | dontTrack                 | <dontTrack>                 |
       | forgetThisIndividual      | <forgetThisIndividual>      |
       | individualsAge            | <individualsAge>            |
-    Then The name displayed should contain <salutation> <firstname> and <lastname>
-    And The created individual details should match the given values
-    And The Individual Records Page should contain a record with <firstname> and <lastname>
+    Then The message should contain the was created text
+    And The Individual record header's name title should match the {<salutation> <firstname> <lastname>} text
+    And I click on the Individual Details tab
+    And The details from the created object should match the given parameters
+      | name                      | <name>                      |
+      | birthdate                 | <birthdate>                 |
+      | dontProcess               | <dontProcess>               |
+      | dontMarket                | <dontMarket>                |
+      | exportIndividualsData     | <exportIndividualsData>     |
+      | okToStorePiiDataElsewhere | <okToStorePiiDataElsewhere> |
+      | blockGeolocationTracking  | <blockGeolocationTracking>  |
+      | dontProfile               | <dontProfile>               |
+      | dontTrack                 | <dontTrack>                 |
+      | forgetThisIndividual      | <forgetThisIndividual>      |
+      | individualsAge            | <individualsAge>            |
     Examples:
-      | salutation | lastname | firstname | birthdate  | dontProcess | dontMarket | exportIndividualsData | okToStorePiiDataElsewhere | blockGeolocationTracking | dontProfile | dontTrack | forgetThisIndividual | individualsAge |
-      | Mr.        | Paul     | Jake      | 01/01/2000 | true        | true       | true                  | true                      | true                     | true        | true      | true                 | 13 or Older    |
+      | salutation | lastname | firstname | name          | birthdate  | dontProcess | dontMarket | exportIndividualsData | okToStorePiiDataElsewhere | blockGeolocationTracking | dontProfile | dontTrack | forgetThisIndividual | individualsAge |
+      | Mr.        | Paul     | Jake      | Mr. Jake Paul | 01/01/2000 | true        | true       | true                  | true                      | true                     | true        | true      | true                 | 13 or Older    |

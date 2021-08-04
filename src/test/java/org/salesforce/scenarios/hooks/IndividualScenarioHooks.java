@@ -18,17 +18,18 @@ public class IndividualScenarioHooks {
 
     private Logger logger = LogManager.getLogger(getClass());
     private PageTransporter pageTransporter;
-    private LoginPage loginPage;
-    private IndividualFormPage individualFormPage;
+    private Object entity;
 
-    public IndividualScenarioHooks(PageTransporter pageTransporter) {
+    public IndividualScenarioHooks(PageTransporter pageTransporter, Object entity) {
         this.pageTransporter = pageTransporter;
+        this.entity = entity;
     }
 
     @After(value = "@CreateIndividual")
     public void setLast() {
         logger.info("============ DELETE CREATED INDIVIDUAL ============");
-        IndividualListPage individualListPage = pageTransporter.navigateToIndividualListPage();
+        pageTransporter.navigateToObjectListPage("Individual");
+        IndividualListPage individualListPage = new IndividualListPage();
         individualListPage.deleteLastModifiedRecord();
         String actual = individualListPage.getDeletedSuccessMessage();
         String expected = "was deleted.";

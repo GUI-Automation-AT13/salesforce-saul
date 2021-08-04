@@ -8,7 +8,9 @@
 
 package salesforce.gui.pages;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,7 +19,7 @@ import salesforce.gui.entities.IndividualEntity;
 /**
  * POM for the Salesforce new Individual page.
  */
-public class IndividualFormPage extends BasePage {
+public class NewIndividualPage extends BasePage implements NewObjectPage {
 
     private final String generalSalutationOptionSelector = "[title=\"%s\"]";
     private final String generalCheckboxSelector = "//div[label[contains(.,\"%s\")]]/input";
@@ -195,7 +197,6 @@ public class IndividualFormPage extends BasePage {
     public String getCreatedSuccessMessage() {
         getWait().until(ExpectedConditions.visibilityOf(findElement(createdSuccessMessage)));
         return getWebElementActions().getText(createdSuccessMessage);
-        //return findElement(createdSuccessMessage).getText();
     }
 
     /**
@@ -223,7 +224,7 @@ public class IndividualFormPage extends BasePage {
      * @param entity represents a Salesforce object
      * @return IndividualFormPage
      */
-    public IndividualFormPage createIndividual(final Set<String> fields, final IndividualEntity entity) {
+    public NewIndividualPage createIndividual(final Set<String> fields, final IndividualEntity entity) {
         HashMap<String, Runnable> strategyMap = new HashMap<>();
         strategyMap.put("salutation", () -> clickOnSalutationOption(entity.getSalutation()));
         strategyMap.put("lastname", () -> setLastnameTextbox(entity.getLastname()));
@@ -232,7 +233,7 @@ public class IndividualFormPage extends BasePage {
         strategyMap.put("dontProcess", () -> clickOnDontProcessCheckbox());
         strategyMap.put("dontMarket", () -> clickOnDontMarketCheckbox());
         strategyMap.put("exportIndividualsData", () -> clickOnExportIndividualDataCheckbox());
-        strategyMap.put("okToStorePiiDataElsewhere", () -> clickOnIndividualAgeSelector());
+        strategyMap.put("okToStorePiiDataElsewhere", () -> clickOnOkToStorePiiDataCheckbox());
         strategyMap.put("blockGeolocationTracking", () -> clickOnBlockGeolocationCheckbox());
         strategyMap.put("dontProfile", () -> clickOnDontProfileCheckbox());
         strategyMap.put("dontTrack", () -> clickOnDontTrackCheckbox());
@@ -259,5 +260,18 @@ public class IndividualFormPage extends BasePage {
     @Override
     protected void waitForPageToLoad() {
         getWait().until(ExpectedConditions.presenceOfElementLocated(saveButton));
+    }
+
+    @Override
+    public <T> T createObject(final Map<String, String> dataTable) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        IndividualEntity individualEntity = objectMapper.convertValue(dataTable, IndividualEntity.class);
+        createIndividual(dataTable.keySet(), individualEntity);
+        return (T) individualEntity;
+    }
+
+    @Override
+    public String getStatusMessage() {
+        return null;
     }
 }

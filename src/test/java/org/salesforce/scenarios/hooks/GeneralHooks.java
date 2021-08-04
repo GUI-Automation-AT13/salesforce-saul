@@ -21,9 +21,14 @@ public class GeneralHooks {
 
     private Logger logger = LogManager.getLogger(getClass());
     private PageTransporter pageTransporter;
+    private NewObjectPage newObjectPage;
+    private ObjectRecordPage objectRecordPage;
+    private ObjectListPage objectListPage;
+    private Object entity;
 
-    public GeneralHooks(PageTransporter pageTransporter) {
+    public GeneralHooks(PageTransporter pageTransporter, Object entity) {
         this.pageTransporter = pageTransporter;
+        this.entity = entity;
     }
 
     @Before(order  = 1)

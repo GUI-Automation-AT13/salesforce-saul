@@ -8,13 +8,15 @@
 
 package salesforce.gui.pages;
 
+import java.util.Map;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import salesforce.gui.entities.IndividualEntity;
 
 /**
  * POM represents the Salesforce Individual record page.
  */
-public class IndividualRecordPage extends BasePage {
+public class IndividualRecordPage extends BasePage implements ObjectRecordPage {
 
     private By nameHeaderLabel = By.cssSelector("h1 .uiOutputText");
     private By editHeaderButton = By.cssSelector("div[title=\"Edit\"]");
@@ -122,13 +124,6 @@ public class IndividualRecordPage extends BasePage {
      */
     public void clickRelatedContactPointPhonesLink() {
         getWebElementActions().clickOnElement(relatedFeatureLink, "Contact Point Phones");
-    }
-
-    /**
-     * Clicks on the Details tab.
-     */
-    public void clickonDetailsTab() {
-        getWebElementActions().clickOnElement(detailsTabButton);
     }
 
     /**
@@ -264,5 +259,39 @@ public class IndividualRecordPage extends BasePage {
     @Override
     protected void waitForPageToLoad() {
         getWait().until(ExpectedConditions.presenceOfElementLocated(nameHeaderLabel));
+    }
+
+    @Override
+    public String getHeaderName() {
+        return getWebElementActions().getText(nameHeaderLabel);
+    }
+
+    @Override
+    public boolean detailsMatch(Object object, Map<String, String> details) {
+        IndividualEntity individualEntity = IndividualEntity.class.cast(object);
+        boolean res = individualEntity.getFullName().matches(details.get("name"))
+                && individualEntity.getBirthdate().matches(details.get("birthdate"))
+                && String.valueOf(individualEntity.getDontProcess()).matches(details.get("dontProcess"))
+                && String.valueOf(individualEntity.getDontMarket()).matches(details.get("dontMarket"))
+                && String.valueOf(individualEntity.getExportIndividualsData())
+                .matches(details.get("exportIndividualsData"))
+                && String.valueOf(individualEntity.getOkToStorePiiDataElsewhere())
+                .matches(details.get("okToStorePiiDataElsewhere"))
+                && String.valueOf(individualEntity.getBlockGeolocationTracking())
+                .matches(details.get("blockGeolocationTracking"))
+                && String.valueOf(individualEntity.getDontProfile()).matches(details.get("dontProfile"))
+                && String.valueOf(individualEntity.getDontTrack()).matches(details.get("dontTrack"))
+                && String.valueOf(individualEntity.getForgetThisIndividual())
+                .matches(details.get("forgetThisIndividual"))
+                && String.valueOf(individualEntity.getIndividualsAge()).matches(details.get("individualsAge"));
+        return res;
+    }
+
+    /**
+     * Clicks on the Details tab.
+     */
+    @Override
+    public void clickOnTheDetailsTab() {
+        getWebElementActions().clickOnElement(detailsTabButton);
     }
 }

@@ -10,6 +10,7 @@ package salesforce.gui.pages;
 
 import config.ConfigManager;
 import core.selenium.WebDriverManager;
+import core.utils.ClassGetter;
 
 /**
  * Navigates trough Salesforce pages and returns its POM classes.
@@ -17,6 +18,11 @@ import core.selenium.WebDriverManager;
 public final class PageTransporter {
 
     private final String baseUrl = ConfigManager.getConfiguration().baseUrl();
+    private final String newObjectPageUrl = "/lightning/o/%s/new?count=1";
+    private final String objectListPageUrl = "/lightning/o/%s/list?filterName=Recent";
+    private final String newObjectEntity = "salesforce.gui.pages.New%sPage";
+    private final String featureRecordPage = "salesforce.gui.pages.%sRecordPage";
+    private final String featureListPage = "salesforce.gui.pages.%sListPage";
 
     /**
      * Navigates to a url.
@@ -33,32 +39,32 @@ public final class PageTransporter {
     }
 
     /**
-     * Navigates to the individual form page.
-     *
-     * @return IndividualFormPage
+     * Navigates to the page of creation of the given feature.
      */
-    public IndividualFormPage navigateToIndividualFormPage() {
-        goToUrl(baseUrl.concat("/lightning/o/Individual/new?count=1"));
-        return new IndividualFormPage();
+    public NewObjectPage navigateToNewObjectPage(final String feature) {
+        goToUrl(baseUrl.concat(String.format(newObjectPageUrl, feature)));
+        return (NewObjectPage) ClassGetter.get(String.format(newObjectEntity, feature));
     }
 
     /**
-     * Navigates to the individual list page.
-     *
-     * @return IndividualListPage
+     * Navigates to the given feature list page.
      */
-    public IndividualListPage navigateToIndividualListPage() {
-        goToUrl(baseUrl.concat("/lightning/o/Individual/list?filterName=Recent"));
-        return new IndividualListPage();
+    public ObjectListPage navigateToObjectListPage(final String feature) {
+        goToUrl(baseUrl.concat(String.format(objectListPageUrl, feature)));
+        return (ObjectListPage) ClassGetter.get(String.format(featureListPage, feature));
     }
 
     /**
-     * Navigates to the page with the given String.
-     *
-     * @param page represents the page url to navitate to.
-     * @return T
+     * Navigates to the given feature list page.
      */
-    public <T> T navigateTo(final String page) {
-        return null;
+    public void navigateToObjectRecordPage(final String feature) {
+        goToUrl(baseUrl.concat(String.format(objectListPageUrl, feature)));
+    }
+
+    /**
+     * Navigates to the given feature list page.
+     */
+    public ObjectRecordPage getRecordPage(final String feature) {
+        return (ObjectRecordPage) ClassGetter.get(String.format(featureRecordPage, feature));
     }
 }

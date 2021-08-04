@@ -14,15 +14,6 @@ package salesforce.gui.entities;
 public class IndividualEntity {
 
     private String salutation;
-
-    public String getSalutation() {
-        return salutation;
-    }
-
-    public void setSalutation(String salutation) {
-        this.salutation = salutation;
-    }
-
     private String firstname;
     private String lastname;
     private String birthdate;
@@ -36,7 +27,16 @@ public class IndividualEntity {
     private boolean forgetThisIndividual;
     private String individualsAge;
 
-    public boolean isDontProcess() {
+    public String getSalutation() {
+        return salutation;
+    }
+
+    public void setSalutation(String salutation) {
+        this.salutation = salutation;
+    }
+
+
+    public boolean getDontProcess() {
         return dontProcess;
     }
 
@@ -44,7 +44,7 @@ public class IndividualEntity {
         this.dontProcess = dontProcess;
     }
 
-    public boolean isExportIndividualsData() {
+    public boolean getExportIndividualsData() {
         return exportIndividualsData;
     }
 
@@ -52,7 +52,7 @@ public class IndividualEntity {
         this.exportIndividualsData = exportIndividualsData;
     }
 
-    public boolean isOkToStorePiiDataElsewhere() {
+    public boolean getOkToStorePiiDataElsewhere() {
         return okToStorePiiDataElsewhere;
     }
 
@@ -60,7 +60,7 @@ public class IndividualEntity {
         this.okToStorePiiDataElsewhere = okToStorePiiDataElsewhere;
     }
 
-    public boolean isBlockGeolocationTracking() {
+    public boolean getBlockGeolocationTracking() {
         return blockGeolocationTracking;
     }
 
@@ -68,7 +68,7 @@ public class IndividualEntity {
         this.blockGeolocationTracking = blockGeolocationTracking;
     }
 
-    public boolean isDontProfile() {
+    public boolean getDontProfile() {
         return dontProfile;
     }
 
@@ -76,7 +76,7 @@ public class IndividualEntity {
         this.dontProfile = dontProfile;
     }
 
-    public boolean isDontTrack() {
+    public boolean getDontTrack() {
         return dontTrack;
     }
 
@@ -84,7 +84,7 @@ public class IndividualEntity {
         this.dontTrack = dontTrack;
     }
 
-    public boolean isForgetThisIndividual() {
+    public boolean getForgetThisIndividual() {
         return forgetThisIndividual;
     }
 
@@ -159,7 +159,7 @@ public class IndividualEntity {
      *
      * @return boolean indicates if the options is selected
      */
-    public boolean isDontMarket() {
+    public boolean getDontMarket() {
         return dontMarket;
     }
 
@@ -170,5 +170,14 @@ public class IndividualEntity {
      */
     public void setDontMarket(final boolean dontMarketValue) {
         this.dontMarket = dontMarketValue;
+    }
+
+    /**
+     * Returns the full name with salutation.
+     *
+     * @return String representing the fullname
+     */
+    public String getFullName() {
+        return String.format("%s %s %s", salutation, firstname, lastname);
     }
 }
