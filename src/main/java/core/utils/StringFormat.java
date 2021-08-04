@@ -9,6 +9,7 @@
 package core.utils;
 
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 /**
@@ -62,5 +63,15 @@ public final class StringFormat {
      */
     public static String removeWhiteSpaces(final String text) {
         return text.replaceAll("\\s+", "");
+    }
+
+    /**
+     * Converts to lower case.
+     *
+     * @param text represents the text to be formatted.
+     * @return a String
+     */
+    public static String toLowerCase(final String text) {
+        return text.toLowerCase();
     }
 }

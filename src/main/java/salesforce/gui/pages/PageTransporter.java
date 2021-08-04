@@ -11,6 +11,8 @@ package salesforce.gui.pages;
 import config.ConfigManager;
 import core.selenium.WebDriverManager;
 import core.utils.ClassGetter;
+import core.utils.StringFormat;
+import salesforce.gui.pages.settings.LanguageAndTimeZonePage;
 
 /**
  * Navigates trough Salesforce pages and returns its POM classes.
@@ -20,9 +22,10 @@ public final class PageTransporter {
     private final String baseUrl = ConfigManager.getConfiguration().baseUrl();
     private final String newObjectPageUrl = "/lightning/o/%s/new?count=1";
     private final String objectListPageUrl = "/lightning/o/%s/list?filterName=Recent";
-    private final String newObjectEntity = "salesforce.gui.pages.New%sPage";
-    private final String featureRecordPage = "salesforce.gui.pages.%sRecordPage";
-    private final String featureListPage = "salesforce.gui.pages.%sListPage";
+    private final String languageAndTimeZoneUrl = "/lightning/settings/personal/LanguageAndTimeZone/home";
+    private final String newObjectPage = "salesforce.gui.pages.%s.New%sPage";
+    private final String featureRecordPage = "salesforce.gui.pages.%s.%sRecordPage";
+    private final String featureListPage = "salesforce.gui.pages.%s.%sListPage";
 
     /**
      * Navigates to a url.
@@ -43,7 +46,8 @@ public final class PageTransporter {
      */
     public NewObjectPage navigateToNewObjectPage(final String feature) {
         goToUrl(baseUrl.concat(String.format(newObjectPageUrl, feature)));
-        return (NewObjectPage) ClassGetter.get(String.format(newObjectEntity, feature));
+        return (NewObjectPage) ClassGetter.get(String.format(newObjectPage,
+                StringFormat.toLowerCase(feature), feature));
     }
 
     /**
@@ -51,7 +55,8 @@ public final class PageTransporter {
      */
     public ObjectListPage navigateToObjectListPage(final String feature) {
         goToUrl(baseUrl.concat(String.format(objectListPageUrl, feature)));
-        return (ObjectListPage) ClassGetter.get(String.format(featureListPage, feature));
+        return (ObjectListPage) ClassGetter.get(String.format(featureListPage,
+                StringFormat.toLowerCase(feature), feature));
     }
 
     /**
@@ -65,6 +70,15 @@ public final class PageTransporter {
      * Navigates to the given feature list page.
      */
     public ObjectRecordPage getRecordPage(final String feature) {
-        return (ObjectRecordPage) ClassGetter.get(String.format(featureRecordPage, feature));
+        return (ObjectRecordPage) ClassGetter.get(String.format(featureRecordPage,
+                StringFormat.toLowerCase(feature), feature));
+    }
+
+    /**
+     * Navigates to the language and time zone page.
+     */
+    public LanguageAndTimeZonePage navigateToTheLanguageAndTimeZonePage() {
+        goToUrl(baseUrl.concat(languageAndTimeZoneUrl));
+        return new LanguageAndTimeZonePage();
     }
 }

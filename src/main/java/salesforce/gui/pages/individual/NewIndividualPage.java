@@ -6,7 +6,7 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package salesforce.gui.pages;
+package salesforce.gui.pages.individual;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.HashMap;
@@ -15,6 +15,8 @@ import java.util.Set;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.gui.entities.IndividualEntity;
+import salesforce.gui.pages.BasePage;
+import salesforce.gui.pages.NewObjectPage;
 
 /**
  * POM for the Salesforce new Individual page.

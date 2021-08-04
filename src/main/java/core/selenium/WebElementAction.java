@@ -11,6 +11,7 @@ package core.selenium;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
@@ -67,8 +68,8 @@ public class WebElementAction {
      * @param selector represents a By selector
      */
     public void clickOnElement(final By selector) {
+        wait.until(ExpectedConditions.visibilityOf(getElement(selector)));
         driver.findElement(selector).click();
-        //wait.until(ExpectedConditions.visibilityOf(webElement));
     }
 
     /**

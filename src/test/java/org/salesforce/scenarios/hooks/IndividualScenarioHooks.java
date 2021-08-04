@@ -13,6 +13,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import salesforce.gui.pages.*;
+import salesforce.gui.pages.individual.IndividualListPage;
 
 public class IndividualScenarioHooks {
 

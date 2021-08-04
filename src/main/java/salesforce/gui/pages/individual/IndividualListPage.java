@@ -6,11 +6,13 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package salesforce.gui.pages;
+package salesforce.gui.pages.individual;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import salesforce.gui.pages.BasePage;
+import salesforce.gui.pages.ObjectListPage;
 
 /**
  * POM for the Salesforce Individual List page.
