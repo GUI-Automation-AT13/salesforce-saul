@@ -11,6 +11,9 @@ package salesforce.gui.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+/**
+ * POM for the Salesforce HomePage.
+ */
 public class HomePage extends BasePage {
 
     public static final String URL = "/lightning/page/home";

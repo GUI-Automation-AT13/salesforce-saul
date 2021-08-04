@@ -14,7 +14,8 @@ import org.aeonbits.owner.Config;
  * Represents an Owner Config class that retrieves the values of the defined property files.
  */
 @Config.Sources({
-        "classpath:general.properties"
+    "file:general.properties",
+    "system:properties"
 })
 public interface PropertiesConfig extends Config {
 
@@ -38,4 +39,9 @@ public interface PropertiesConfig extends Config {
 
     @Config.Key("explicit_wait_time")
     int explicitWaitTime();
+
+    @Config.Key("language")
+    @DefaultValue("en")
+    String language();
 }
+

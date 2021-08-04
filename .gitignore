@@ -4,3 +4,4 @@ build/
 .idea/
 .vscode/
 src/main/resources/general.properties
+general.properties

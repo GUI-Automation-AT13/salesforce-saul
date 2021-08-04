@@ -15,15 +15,27 @@ import org.aeonbits.owner.ConfigCache;
  */
 public final class ConfigManager {
 
+    private static final String languageKey = "language";
+
     private ConfigManager() {
 
     }
 
     /**
      * Returns an instance of the GeneralConfig class.
+     *
      * @return a PropertiesConfig instance
      */
     public static PropertiesConfig getConfiguration() {
         return ConfigCache.getOrCreate(PropertiesConfig.class);
+    }
+
+    /**
+     * Sets a system property from the given key and value.
+     *
+     * @param value represents the property value
+     */
+    public static void setSystemLanguageProperty(final String value) {
+        System.setProperty(languageKey, value);
     }
 }

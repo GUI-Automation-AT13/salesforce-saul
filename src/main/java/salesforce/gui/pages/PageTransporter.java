@@ -10,14 +10,27 @@ package salesforce.gui.pages;
 
 import config.ConfigManager;
 import core.selenium.WebDriverManager;
+import core.utils.ClassGetter;
+import core.utils.StringFormat;
+import salesforce.gui.pages.settings.LanguageAndTimeZonePage;
 
+/**
+ * Navigates trough Salesforce pages and returns its POM classes.
+ */
 public final class PageTransporter {
 
     private final String baseUrl = ConfigManager.getConfiguration().baseUrl();
+    private final String newObjectPageUrl = "/lightning/o/%s/new?count=1";
+    private final String objectListPageUrl = "/lightning/o/%s/list?filterName=Recent";
+    private final String languageAndTimeZoneUrl = "/lightning/settings/personal/LanguageAndTimeZone/home";
+    private final String newObjectPage = "salesforce.gui.pages.%s.New%sPage";
+    private final String featureRecordPage = "salesforce.gui.pages.%s.%sRecordPage";
+    private final String featureListPage = "salesforce.gui.pages.%s.%sListPage";
 
     /**
      * Navigates to a url.
-     * @param url
+     *
+     * @param url represents the url to navigate to
      */
     public void goToUrl(final String url) {
         WebDriverManager.getDriver().navigate().to(url);
@@ -29,30 +42,43 @@ public final class PageTransporter {
     }
 
     /**
-     * Navigates to the individual form page.
-     * @return IndividualFormPage
+     * Navigates to the page of creation of the given feature.
      */
-    public IndividualFormPage navigateToIndividualFormPage() {
-        goToUrl(baseUrl.concat("/lightning/o/Individual/new?count=1"));
-        return new IndividualFormPage();
+    public NewObjectPage navigateToNewObjectPage(final String feature) {
+        goToUrl(baseUrl.concat(String.format(newObjectPageUrl, feature)));
+        return (NewObjectPage) ClassGetter.get(String.format(newObjectPage,
+                StringFormat.toLowerCase(feature), feature));
     }
 
     /**
-     * Navigates to the individual list page.
-     * @return IndividualListPage
+     * Navigates to the given feature list page.
      */
-    public IndividualListPage navigateToIndividualListPage() {
-        goToUrl(baseUrl.concat("/lightning/o/Individual/list?filterName=Recent"));
-        return new IndividualListPage();
+    public ObjectListPage navigateToObjectListPage(final String feature) {
+        goToUrl(baseUrl.concat(String.format(objectListPageUrl, feature)));
+        return (ObjectListPage) ClassGetter.get(String.format(featureListPage,
+                StringFormat.toLowerCase(feature), feature));
     }
 
     /**
-     * Navigates to the page with the given String.
-     * @param page
-     * @param <T>
-     * @return T
+     * Navigates to the given feature list page.
      */
-    public <T> T navigateTo(final String page) {
-        return null;
+    public void navigateToObjectRecordPage(final String feature) {
+        goToUrl(baseUrl.concat(String.format(objectListPageUrl, feature)));
+    }
+
+    /**
+     * Navigates to the given feature list page.
+     */
+    public ObjectRecordPage getRecordPage(final String feature) {
+        return (ObjectRecordPage) ClassGetter.get(String.format(featureRecordPage,
+                StringFormat.toLowerCase(feature), feature));
+    }
+
+    /**
+     * Navigates to the language and time zone page.
+     */
+    public LanguageAndTimeZonePage navigateToTheLanguageAndTimeZonePage() {
+        goToUrl(baseUrl.concat(languageAndTimeZoneUrl));
+        return new LanguageAndTimeZonePage();
     }
 }

@@ -9,11 +9,13 @@
 package core.selenium;
 
 import config.ConfigManager;
+import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.concurrent.TimeUnit;
-
+/**
+ * The Web Driver manager that returns a single instance of the driver and wait.
+ */
 public final class WebDriverManager {
 
     private static WebDriver driver;
@@ -25,19 +27,19 @@ public final class WebDriverManager {
     /**
      * Returns an instance of the WebDriver.
      *
-     * @return WebDriver
-     * @param browser
+     * @param browser represents the browser type
+     * @return the WebDriver
      */
     public static WebDriver getDriver(final Browser browser) {
         if (driver == null) {
             System.setProperty(browser.getDriverName(),
                     browser.getDriverPath());
             driver = browser.getDriver();
+            driver.manage().window().maximize();
+            driver.manage().deleteAllCookies();
+            driver.manage().timeouts().implicitlyWait(ConfigManager.getConfiguration()
+                    .implicitWaitTime(), TimeUnit.SECONDS);
         }
-        driver.manage().window().maximize();
-        driver.manage().deleteAllCookies();
-        driver.manage().timeouts().implicitlyWait(ConfigManager.getConfiguration()
-                .implicitWaitTime(), TimeUnit.SECONDS);
         return driver;
     }
 
@@ -47,7 +49,7 @@ public final class WebDriverManager {
      * @return WebDriver
      */
     public static WebDriver getDriver() {
-        return driver;
+        return getDriver(new ChromeBrowser());
     }
 
     /**
@@ -58,7 +60,7 @@ public final class WebDriverManager {
     public static WebDriverWait getDriverWait() {
         if (driverWait == null) {
             driverWait = new WebDriverWait(driver, ConfigManager.getConfiguration()
-                    .implicitWaitTime());
+                    .explicitWaitTime());
         }
         return driverWait;
     }

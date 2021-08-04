@@ -16,10 +16,20 @@ dependencies {
     implementation group: 'org.seleniumhq.selenium', name: 'selenium-support', version: '3.141.59'
     implementation 'org.testng:testng:7.4.0'
     implementation group: 'org.aeonbits.owner', name: 'owner-java8', version: '1.0.12'
+    implementation 'io.cucumber:cucumber-java:6.10.4'
+    testImplementation 'io.cucumber:cucumber-testng:6.10.4'
+    implementation 'io.cucumber:cucumber-picocontainer:6.10.4'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.12.4'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.4'
+    implementation 'log4j:log4j:1.2.17'
 }
 
 test {
     useTestNG()
+    systemProperty "cucumber.options", System.getProperty("cucumber.options")
+    exclude 'org.salesforce/scripts/**'
+    ignoreFailures = true
+    scanForTestClasses = false
     testLogging {
         events "failed"
         exceptionFormat "full"
@@ -27,9 +37,10 @@ test {
 }
 
 checkstyle {
-    toolVersion '8.34'
+    toolVersion '8.44'
     configFile file('config/checkstyle/checkstyle.xml')
     checkstyleMain.source = "src/main/"
+    checkstyleMain.excludes = ["**/src/test/**"]
 }
 
 pitest {
@@ -47,5 +58,13 @@ checkstyleMain {
 checkstyleTest {
     source = 'src/test/java'
 }
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+def tags = (findProperty('tags') == null) ? 'not @Ignore' : findProperty('tags') + ' and not @Ignore'
 
 test.finalizedBy("checkstyleMain")

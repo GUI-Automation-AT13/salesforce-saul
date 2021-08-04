@@ -12,11 +12,15 @@ import config.ConfigManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+/**
+ * Class for the Chrome Browser properties.
+ */
 public class ChromeBrowser implements Browser {
 
     /**
      * Returns the chrome driver name.
-     * @return String
+     *
+     * @return a String
      */
     @Override
     public String getDriverName() {
@@ -25,7 +29,8 @@ public class ChromeBrowser implements Browser {
 
     /**
      * Returns the chrome driver path.
-     * @return
+     *
+     * @return a String
      */
     @Override
     public String getDriverPath() {
@@ -34,7 +39,8 @@ public class ChromeBrowser implements Browser {
 
     /**
      * Returns the chrome driver.
-     * @return WebDriver
+     *
+     * @return the WebDriver
      */
     @Override
     public WebDriver getDriver() {
