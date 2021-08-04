@@ -14,7 +14,7 @@ import org.aeonbits.owner.Config;
  * Represents an Owner Config class that retrieves the values of the defined property files.
  */
 @Config.Sources({
-        "classpath:general.properties"
+    "file:general.properties"
 })
 public interface PropertiesConfig extends Config {
 

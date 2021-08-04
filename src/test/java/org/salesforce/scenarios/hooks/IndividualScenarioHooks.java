@@ -8,9 +8,7 @@
 
 package org.salesforce.scenarios.hooks;
 
-import config.ConfigManager;
 import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -27,21 +25,9 @@ public class IndividualScenarioHooks {
         this.pageTransporter = pageTransporter;
     }
 
-    @Before(order  = 1)
-    public void setUp() {
-        login();
-    }
-
-    public void login() {
-        LoginPage loginpage = pageTransporter.navigateToLoginPage();
-        loginpage.setUsernameTextbox(ConfigManager.getConfiguration().username());
-        loginpage.setPasswordTextbox(ConfigManager.getConfiguration().password());
-        HomePage homePage = loginpage.login();
-        Assert.assertTrue(homePage.labelObjectManageriIsVisible());
-    }
-
     @After(value = "@CreateIndividual")
     public void setLast() {
+        logger.info("============ DELETE CREATED INDIVIDUAL ============");
         IndividualListPage individualListPage = pageTransporter.navigateToIndividualListPage();
         individualListPage.deleteLastModifiedRecord();
         String actual = individualListPage.getDeletedSuccessMessage();

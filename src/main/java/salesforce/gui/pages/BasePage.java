@@ -16,6 +16,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+/**
+ * Base for the salesforce POMs containing instances of required classes.
+ */
 public abstract class BasePage {
 
     private WebDriver driver = WebDriverManager.getDriver();
@@ -59,7 +62,7 @@ public abstract class BasePage {
     /**
      * Returns the Actions instance.
      *
-     * @return Actions
+     * @return Actions instance
      */
     public Actions getActions() {
         return action;
@@ -68,8 +71,8 @@ public abstract class BasePage {
     /**
      * Returns a Web Element found from the provided selector.
      *
-     * @param bySelector
-     * @return WebElement
+     * @param bySelector represents a by selector
+     * @return a WebElement
      */
     public WebElement findElement(final By bySelector) {
         return driver.findElement(bySelector);
@@ -78,7 +81,7 @@ public abstract class BasePage {
     /**
      * Return the PageTransporter instance.
      *
-     * @return PageTransporter
+     * @return PageTransporter instance
      */
     public PageTransporter getPageTransporter() {
         return pageTransporter;

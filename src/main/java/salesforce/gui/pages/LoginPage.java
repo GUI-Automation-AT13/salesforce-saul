@@ -11,6 +11,9 @@ package salesforce.gui.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+/**
+ * POM represents the Salesforce login page.
+ */
 public class LoginPage extends BasePage {
 
     private By usernameTextbox = By.className("username");
@@ -20,7 +23,7 @@ public class LoginPage extends BasePage {
     /**
      * Sets the given username to the username textbox.
      *
-     * @param username
+     * @param username represents the username to be set on the text box
      */
     public void setUsernameTextbox(final String username) {
         getWebElementActions().setInputField(usernameTextbox, username);
@@ -29,7 +32,7 @@ public class LoginPage extends BasePage {
     /**
      * Sets the given password to the password textbox.
      *
-     * @param password
+     * @param password represents the password to be set on the text box
      */
     public void setPasswordTextbox(final String password) {
         getWebElementActions().setInputField(passwordTextbox, password);
@@ -38,7 +41,7 @@ public class LoginPage extends BasePage {
     /**
      * Clicks on the login button.
      *
-     * @return HomePage
+     * @return HomePage page
      */
     public HomePage login() {
         getWebElementActions().clickOnElement(loginButton);

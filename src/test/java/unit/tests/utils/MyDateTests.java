@@ -8,6 +8,7 @@
 
 package unit.tests.utils;
 
+import org.openqa.selenium.InvalidArgumentException;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -49,7 +50,7 @@ public class MyDateTests {
     }
 
     @Test
-    public void getTodayShouldReturnTheCorrectDate() throws Exception {
+    public void getTodayShouldReturnTheCorrectDate() throws InvalidArgumentException {
         MyDate myDate = new MyDate();
         Calendar calendar;
         calendar = Calendar.getInstance();
@@ -57,7 +58,7 @@ public class MyDateTests {
     }
 
     @Test
-    public void getTomorrowShouldReturnTheCorrectDate() throws Exception {
+    public void getTomorrowShouldReturnTheCorrectDate() {
         MyDate myDate = new MyDate();
         Calendar calendar;
         calendar = Calendar.getInstance();
@@ -66,7 +67,7 @@ public class MyDateTests {
     }
 
     @Test
-    public void getYesterdayShouldReturnTheCorrectDate() throws Exception {
+    public void getYesterdayShouldReturnTheCorrectDate() {
         MyDate myDate = new MyDate();
         Calendar calendar;
         calendar = Calendar.getInstance();
@@ -75,7 +76,7 @@ public class MyDateTests {
     }
 
     @Test
-    public void get100SecondsAgoShouldReturnTheCorrectDate() throws Exception {
+    public void get100SecondsAgoShouldReturnTheCorrectDate() {
         MyDate myDate = new MyDate();
         Calendar calendar;
         calendar = Calendar.getInstance();
@@ -93,7 +94,7 @@ public class MyDateTests {
     }
 
     @Test
-    public void get10MinutesAgoShouldReturnTheCorrectDate() throws Exception {
+    public void get10MinutesAgoShouldReturnTheCorrectDate() {
         MyDate myDate = new MyDate();
         Calendar calendar;
         calendar = Calendar.getInstance();
@@ -102,7 +103,7 @@ public class MyDateTests {
     }
 
     @Test
-    public void get10MinutesFromNowShouldReturnTheCorrectDate() throws Exception {
+    public void get10MinutesFromNowShouldReturnTheCorrectDate() {
         MyDate myDate = new MyDate();
         Calendar calendar;
         calendar = Calendar.getInstance();
@@ -111,7 +112,7 @@ public class MyDateTests {
     }
 
     @Test
-    public void get5hoursAgoShouldReturnTheCorrectDate() throws Exception {
+    public void get5hoursAgoShouldReturnTheCorrectDate() {
         MyDate myDate = new MyDate();
         Calendar calendar;
         calendar = Calendar.getInstance();
@@ -121,7 +122,7 @@ public class MyDateTests {
 
 
     @Test
-    public void get5HoursFromNowShouldReturnTheCorrectDate() throws Exception {
+    public void get5HoursFromNowShouldReturnTheCorrectDate() {
         MyDate myDate = new MyDate();
         Calendar calendar;
         calendar = Calendar.getInstance();
@@ -130,7 +131,7 @@ public class MyDateTests {
     }
 
     @Test
-    public void get5DaysAgoShouldReturnTheCorrectDate() throws Exception {
+    public void get5DaysAgoShouldReturnTheCorrectDate() {
         MyDate myDate = new MyDate();
         Calendar calendar;
         calendar = Calendar.getInstance();
@@ -139,7 +140,7 @@ public class MyDateTests {
     }
 
     @Test
-    public void get5DaysFromNowShouldReturnTheCorrectDate() throws Exception {
+    public void get5DaysFromNowShouldReturnTheCorrectDate() {
         MyDate myDate = new MyDate();
         Calendar calendar;
         calendar = Calendar.getInstance();
@@ -148,7 +149,7 @@ public class MyDateTests {
     }
 
     @Test
-    public void get5weekAgoShouldReturnTheCorrectDate() throws Exception {
+    public void get5weekAgoShouldReturnTheCorrectDate() {
         MyDate myDate = new MyDate();
         Calendar calendar;
         calendar = Calendar.getInstance();
@@ -157,7 +158,7 @@ public class MyDateTests {
     }
 
     @Test
-    public void get5weekFromNowShouldReturnTheCorrectDate() throws Exception {
+    public void get5weekFromNowShouldReturnTheCorrectDate() {
         MyDate myDate = new MyDate();
         Calendar calendar;
         calendar = Calendar.getInstance();
@@ -166,7 +167,7 @@ public class MyDateTests {
     }
 
     @Test
-    public void get5monthsAgoShouldReturnTheCorrectDate() throws Exception {
+    public void get5monthsAgoShouldReturnTheCorrectDate() {
         MyDate myDate = new MyDate();
         Calendar calendar;
         calendar = Calendar.getInstance();
@@ -175,7 +176,7 @@ public class MyDateTests {
     }
 
     @Test
-    public void get5monthsFromNowShouldReturnTheCorrectDate() throws Exception {
+    public void get5monthsFromNowShouldReturnTheCorrectDate() {
         MyDate myDate = new MyDate();
         Calendar calendar;
         calendar = Calendar.getInstance();
@@ -184,7 +185,7 @@ public class MyDateTests {
     }
 
     @Test
-    public void get5yearsAgoShouldReturnTheCorrectDate() throws Exception {
+    public void get5yearsAgoShouldReturnTheCorrectDate() {
         MyDate myDate = new MyDate();
         Calendar calendar;
         calendar = Calendar.getInstance();
@@ -193,7 +194,7 @@ public class MyDateTests {
     }
 
     @Test
-    public void get5yearsFromNowShouldReturnTheCorrectDate() throws Exception {
+    public void get5yearsFromNowShouldReturnTheCorrectDate() {
         MyDate myDate = new MyDate();
         Calendar calendar;
         calendar = Calendar.getInstance();
@@ -286,13 +287,13 @@ public class MyDateTests {
     }
 
     @Test(dataProvider = "invalidGetData", expectedExceptions = Exception.class)
-    public void getShouldReturnAnException(String input) throws Exception {
+    public void getShouldReturnAnException(String input) {
         MyDate myDate = new MyDate();
         myDate.get(input);
     }
 
     @Test
-    public void get_02_02_2000_ShouldReturnTheCorrectDate() throws Exception {
+    public void get_02_02_2000_ShouldReturnTheCorrectDate() {
         MyDate myDate = new MyDate();
         Calendar calendar;
         calendar = Calendar.getInstance();
@@ -304,7 +305,7 @@ public class MyDateTests {
     }
 
     @Test
-    public void get_12_31_1800_ShouldReturnTheCorrectDate() throws Exception {
+    public void get_12_31_1800_ShouldReturnTheCorrectDate() {
         MyDate myDate = new MyDate();
         Calendar calendar;
         calendar = Calendar.getInstance();
@@ -316,7 +317,7 @@ public class MyDateTests {
     }
 
     @Test(expectedExceptions = Exception.class)
-    public void get_invalid_2000_02_01_ShouldThrowException() throws Exception {
+    public void get_invalid_2000_02_01_ShouldThrowException() {
         MyDate myDate = new MyDate();
         Calendar calendar;
         calendar = Calendar.getInstance();
@@ -324,7 +325,7 @@ public class MyDateTests {
     }
 
     @Test(expectedExceptions = Exception.class)
-    public void get_invalid_13_01_2022_ShouldThrowException() throws Exception {
+    public void get_invalid_13_01_2022_ShouldThrowException() {
         MyDate myDate = new MyDate();
         Calendar calendar;
         calendar = Calendar.getInstance();

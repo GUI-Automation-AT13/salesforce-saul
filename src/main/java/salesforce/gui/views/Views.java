@@ -24,7 +24,8 @@ public enum Views {
 
     /**
      * Constructor for the view elements.
-     * @param viewEnum
+     *
+     * @param viewEnum represents the view url.
      */
     Views(final String viewEnum) {
         this.view = viewEnum;
@@ -32,6 +33,7 @@ public enum Views {
 
     /**
      * Returns the string values.
+     *
      * @return a String.
      */
     public String get() {

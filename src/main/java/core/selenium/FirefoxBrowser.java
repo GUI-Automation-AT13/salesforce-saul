@@ -12,6 +12,9 @@ import config.ConfigManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+/**
+ * Class for the Firefox Browser properties.
+ */
 public class FirefoxBrowser implements Browser {
 
     /**

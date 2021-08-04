@@ -15,7 +15,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.openqa.selenium.InvalidArgumentException;
 
+/**
+ * Parses dates to different formats and operates with dates.
+ */
 public class MyDate {
 
     private static final int POSITIVE_VALUE = 1;
@@ -34,24 +38,24 @@ public class MyDate {
      * Gets a date from a valid input String. Valid inputs are:
      * Strings -> "TODAY", "TOMORROW", "YESTERDAY"
      * String with format-> {A number}
-     *      {"seconds", "minutes", "hours", "days", "weeks", "months", "years"}
-     *      {"ago", "from now"}
+     * {"seconds", "minutes", "hours", "days", "weeks", "months", "years"}
+     * {"ago", "from now"}
      * E.g.: "3 hours ago", "1 day from now", "100 minutes from now"
      * String representing a date with format MM/DD/YYYY, year greater or equal to 1900.
      * E.g.: "01/12/2000", "12/31/1990"
      *
-     * @param input
-     * @return Date
-     * @throws Exception
+     * @param input the text to be processed to a date.
+     * @return Date in the defaul format.
+     * @throws Exception for invalid arguments.
      */
-    public Date get(final String input) throws Exception {
+    public Date get(final String input) throws InvalidArgumentException {
         if (validateInput(input)) {
             return calculateDate();
         } else {
             if (isSimpleDate(input)) {
                 return parsedDate;
             } else {
-                throw new Exception("The input doesn't match a valid entry");
+                throw new InvalidArgumentException("The input doesn't match a valid entry");
             }
         }
     }
@@ -59,8 +63,8 @@ public class MyDate {
     /**
      * Verify if input date has valid format.
      *
-     * @param simpleDate
-     * @return boolean
+     * @param simpleDate represents a date in String format
+     * @return boolean indicating if the entered text is in a MM/dd/uuuu date format
      */
     private boolean isSimpleDate(final String simpleDate) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_SIMPLE_FORMAT);
@@ -77,8 +81,8 @@ public class MyDate {
     /**
      * Validates if  the input matches the valid formats.
      *
-     * @param input
-     * @return boolean
+     * @param input represents the text entered.
+     * @return boolean indicates if the entered text matches the allowed format
      */
     public boolean validateInput(final String input) {
         String inputPatternMultiple = "(\\b[2-9]\\b|\\d{2,}) "

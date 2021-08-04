@@ -12,6 +12,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+/**
+ * POM for the Salesforce Individual List page.
+ */
 public class IndividualListPage extends BasePage {
 
     private By recentlyViewedSpan = By.cssSelector("span.triggerLinkText");
@@ -37,12 +40,12 @@ public class IndividualListPage extends BasePage {
      */
     public void deleteLastModifiedRecord() {
         getWebElementActions().clickOnElement(firstRowDropDownMenu);
-//        findElement(By.xpath("//tbody/tr[1]//span/span[contains(.,\"Show Actions\")]"
-//                + "/preceding-sibling::span")).click();
+        //        findElement(By.xpath("//tbody/tr[1]//span/span[contains(.,\"Show Actions\")]"
+        //                + "/preceding-sibling::span")).click();
         dropDownMenu = getWebElementActions().getElement(firstRowDropDownMenuUpdated);
-//        dropDownMenu = getDriver().findElement(By.xpath("//tbody/tr[1]//a[@title="
-//                + "\"Show 2 more actions\"]/ancestor::div[@id and @data-interactive-uid]"));
-        clickOnARecordDropDownMenuDelete();
+        //        dropDownMenu = getDriver().findElement(By.xpath("//tbody/tr[1]//a[@title="
+        //                + "\"Show 2 more actions\"]/ancestor::div[@id and @data-interactive-uid]"));
+        clickOnArecordDropDownMenuDelete();
     }
 
     /**
@@ -58,7 +61,7 @@ public class IndividualListPage extends BasePage {
     /**
      * Clicks on a record from the list of Individual records given the name.
      *
-     * @param name
+     * @param name represents the name to be searched in the record table
      */
     public void clickOnRecordByName(final String name) {
         findElement(By.cssSelector("[title=\"" + name + "\"]")).click();
@@ -67,7 +70,7 @@ public class IndividualListPage extends BasePage {
     /**
      * Search for a record given the name.
      *
-     * @param name
+     * @param name represents the name to be search in the record table
      * @return boolean
      */
     public boolean isThereRecordWithName(final String name) {
@@ -77,9 +80,9 @@ public class IndividualListPage extends BasePage {
     /**
      * Clicks on options Drop down menu options given the name of record.
      *
-     * @param name
+     * @param name represents the name of the record for which its menu will be clicked
      */
-    public void clickOnARecordDropDownMenuOption(final String name) {
+    public void clickOnArecordDropDownMenuOption(final String name) {
         findElement(By.xpath("//a[@title=\"" + name + "\"]/ancestor::tr//"
                 + "span/span[contains(.,\"Show Actions\")]/preceding-sibling::span\"")).click();
         findElement(By.xpath("//a[@title=\"" + name + "\"]/ancestor::tr//a[@title="
@@ -89,7 +92,7 @@ public class IndividualListPage extends BasePage {
     /**
      * Click on a record Drop down menu Edit.
      */
-    public void clickOnARecordDropDownMenuEdit() {
+    public void clickOnArecordDropDownMenuEdit() {
         findElement(By.cssSelector("div[aria-labelledby=\""
                 + dropDownMenu.getAttribute("id") + "\"] a[title=\"Edit\"]")).click();
     }
@@ -97,14 +100,14 @@ public class IndividualListPage extends BasePage {
     /**
      * Click on a record Drop down menu Delete.
      */
-    public void clickOnARecordDropDownMenuDelete() {
+    public void clickOnArecordDropDownMenuDelete() {
         //getWait().until(ExpectedConditions.visibilityOf(dropDownMenu));
         getWebElementActions().clickOnElement(By.cssSelector("div[aria-labelledby="
                 + "\"" + dropDownMenu.getAttribute("id") + "\"] a[title=\"Delete\"]"));
-//        findElement(By.cssSelector("div[aria-labelledby="
-//                + "\"" + dropDownMenu.getAttribute("id") + "\"] a[title=\"Delete\"]")).click();
+        //        findElement(By.cssSelector("div[aria-labelledby="
+        //                + "\"" + dropDownMenu.getAttribute("id") + "\"] a[title=\"Delete\"]")).click();
         getWebElementActions().clickOnElement(deleteButtonDropDownMenu);
-//        findElement(By.xpath("//span[contains(text(),\"Delete\")]")).click();
+        //        findElement(By.xpath("//span[contains(text(),\"Delete\")]")).click();
     }
 
     /**

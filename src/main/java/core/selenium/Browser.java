@@ -10,6 +10,9 @@ package core.selenium;
 
 import org.openqa.selenium.WebDriver;
 
+/**
+ * Interface for a type of browser.
+ */
 public interface Browser {
 
     /**

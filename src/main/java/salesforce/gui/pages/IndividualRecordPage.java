@@ -8,10 +8,12 @@
 
 package salesforce.gui.pages;
 
-import core.selenium.BySelector;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+/**
+ * POM represents the Salesforce Individual record page.
+ */
 public class IndividualRecordPage extends BasePage {
 
     private By nameHeaderLabel = By.cssSelector("h1 .uiOutputText");
@@ -153,7 +155,7 @@ public class IndividualRecordPage extends BasePage {
      * @return boolean
      */
     public boolean checkIfDontProcess() {
-        return getWebElementActions().isSelected(BySelector.withParameter(checkboxDetail, "Don't Process"));
+        return getWebElementActions().isSelected(checkboxDetail, "Don't Process");
     }
 
     /**
@@ -162,7 +164,7 @@ public class IndividualRecordPage extends BasePage {
      * @return boolean
      */
     public boolean checkIfDontMarket() {
-        return getWebElementActions().isSelected(BySelector.withParameter(checkboxDetail, "Don't Market"));
+        return getWebElementActions().isSelected(checkboxDetail, "Don't Market");
     }
 
     /**
@@ -171,7 +173,7 @@ public class IndividualRecordPage extends BasePage {
      * @return boolean
      */
     public boolean checkIfExportIndividualsData() {
-        return getWebElementActions().isSelected(BySelector.withParameter(checkboxDetail, "Export Individual's Data"));
+        return getWebElementActions().isSelected(checkboxDetail, "Export Individual's Data");
     }
 
     /**
@@ -180,8 +182,7 @@ public class IndividualRecordPage extends BasePage {
      * @return boolean
      */
     public boolean checkIfOkToStorePiiDataElsewhere() {
-        return getWebElementActions().isSelected(BySelector.
-                withParameter(checkboxDetail, "OK to Store PII Data Elsewhere"));
+        return getWebElementActions().isSelected(checkboxDetail, "OK to Store PII Data Elsewhere");
     }
 
     /**
@@ -190,8 +191,7 @@ public class IndividualRecordPage extends BasePage {
      * @return boolean
      */
     public boolean checkIfBlockGeolocationTracking() {
-        return getWebElementActions().isSelected(BySelector
-                .withParameter(checkboxDetail, "Block Geolocation Tracking"));
+        return getWebElementActions().isSelected(checkboxDetail, "Block Geolocation Tracking");
     }
 
     /**
@@ -200,7 +200,7 @@ public class IndividualRecordPage extends BasePage {
      * @return boolean
      */
     public boolean checkIfDontProfile() {
-        return getWebElementActions().isSelected(BySelector.withParameter(checkboxDetail, "Don't Profile"));
+        return getWebElementActions().isSelected(checkboxDetail, "Don't Profile");
     }
 
     /**
@@ -209,7 +209,7 @@ public class IndividualRecordPage extends BasePage {
      * @return boolean
      */
     public boolean checkIfDontTrack() {
-        return getWebElementActions().isSelected(BySelector.withParameter(checkboxDetail, "Don't Track"));
+        return getWebElementActions().isSelected(checkboxDetail, "Don't Track");
     }
 
     /**
@@ -218,8 +218,7 @@ public class IndividualRecordPage extends BasePage {
      * @return boolean
      */
     public boolean checkIfForgetThisIndividual() {
-        return getWebElementActions().isSelected(BySelector
-                .withParameter(checkboxDetail, "Forget This Individual"));
+        return getWebElementActions().isSelected(checkboxDetail, "Forget This Individual");
     }
 
     /**

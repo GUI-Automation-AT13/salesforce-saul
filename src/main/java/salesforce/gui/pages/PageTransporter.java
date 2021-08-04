@@ -11,13 +11,17 @@ package salesforce.gui.pages;
 import config.ConfigManager;
 import core.selenium.WebDriverManager;
 
+/**
+ * Navigates trough Salesforce pages and returns its POM classes.
+ */
 public final class PageTransporter {
 
     private final String baseUrl = ConfigManager.getConfiguration().baseUrl();
 
     /**
      * Navigates to a url.
-     * @param url
+     *
+     * @param url represents the url to navigate to
      */
     public void goToUrl(final String url) {
         WebDriverManager.getDriver().navigate().to(url);
@@ -30,6 +34,7 @@ public final class PageTransporter {
 
     /**
      * Navigates to the individual form page.
+     *
      * @return IndividualFormPage
      */
     public IndividualFormPage navigateToIndividualFormPage() {
@@ -39,6 +44,7 @@ public final class PageTransporter {
 
     /**
      * Navigates to the individual list page.
+     *
      * @return IndividualListPage
      */
     public IndividualListPage navigateToIndividualListPage() {
@@ -48,8 +54,8 @@ public final class PageTransporter {
 
     /**
      * Navigates to the page with the given String.
-     * @param page
-     * @param <T>
+     *
+     * @param page represents the page url to navitate to.
      * @return T
      */
     public <T> T navigateTo(final String page) {

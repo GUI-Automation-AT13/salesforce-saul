@@ -27,6 +27,7 @@ dependencies {
 test {
     useTestNG()
     systemProperty "cucumber.options", System.getProperty("cucumber.options")
+    exclude 'org.salesforce/scripts/**'
     ignoreFailures = true
     scanForTestClasses = false
     testLogging {
@@ -36,9 +37,10 @@ test {
 }
 
 checkstyle {
-    toolVersion '8.34'
+    toolVersion '8.44'
     configFile file('config/checkstyle/checkstyle.xml')
     checkstyleMain.source = "src/main/"
+    checkstyleMain.excludes = ["**/src/test/**"]
 }
 
 pitest {
@@ -56,5 +58,13 @@ checkstyleMain {
 checkstyleTest {
     source = 'src/test/java'
 }
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+def tags = (findProperty('tags') == null) ? 'not @Ignore' : findProperty('tags') + ' and not @Ignore'
 
 test.finalizedBy("checkstyleMain")

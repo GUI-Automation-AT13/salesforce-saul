@@ -21,6 +21,7 @@ public final class ConfigManager {
 
     /**
      * Returns an instance of the GeneralConfig class.
+     *
      * @return a PropertiesConfig instance
      */
     public static PropertiesConfig getConfiguration() {
