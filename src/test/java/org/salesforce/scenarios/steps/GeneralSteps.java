@@ -12,7 +12,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import java.util.Map;
-
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -39,38 +38,53 @@ public class GeneralSteps {
 
     @Given("^I navigate to the new (.*?) page$")
     public void iNavigateToThePage(final String page) {
+        logger.info(String.format("============ Given I Navigate to the %s page ============", page));
         newObjectPage = pageTransporter.navigateToNewObjectPage(page);
     }
 
     @When("^I create a new (.*?) record with the following parameters$")
     public void iCreateAnewRecordWithTheFollowingParameters(final String feature, final Map<String, String> table) {
+        logger.info(String.format("============ When I create a %s record ============", feature));
         entity = newObjectPage.createObject(table);
     }
 
-    @Then("^The message should contain the (.*?) text$")
-    public void theMessageShouldContainTheText(final String text) {
+    @When("^I create a new (.*?) record with required parameters$")
+    public void iCreateAnewRecordWithTheRequiredParameters(final String feature, final Map<String, String> table) {
+        logger.info(String.format("============ When I create a %s record ============", feature));
+        entity = newObjectPage.createObject(table);
+    }
+
+    @Then("^The result message should contain the (.*?) text$")
+    public void theResultMessageShouldContainTheText(final String text) {
+        logger.info(String.format("============ Then the result message should contain the '%s' text ============", text));
         newObjectPage.getStatusMessage();
         softAssert.assertEquals(newObjectPage.getStatusMessage(), text);
     }
 
     @Then("^The (.*?) record header's name title should match the (.*) text$")
     public void theRecordHeadersNameTitleShouldMatchTheText(final String feature, final String text) {
+        logger.info(String.format("============ Then the record header should match the '%s' text ============", text));
         objectRecordPage = pageTransporter.getRecordPage(feature);
         softAssert.assertEquals(objectRecordPage.getHeaderName(), text);
     }
     @When("^I click on the (.*?) Details tab$")
     public void iClickOnTheDetailsTab(final String feature) {
+        logger.info(String.format("============ When I click on the %s tab ============", feature));
         objectRecordPage.clickOnTheDetailsTab();
     }
 
     @Then("^The details from the (.*?) object should match the given parameters$")
     public void theDetailsFromTheObjectShouldMatchTheGivenParameters(final String object, final Map<String, String> details) {
+        logger.info("============ Then the record details should match ===========");
         softAssert.assertTrue(objectRecordPage.detailsMatch(entity, details));
     }
 
     @Then("^The Individual List Page should contain a record with (.*) and (.*)$")
     public void theIndividualListPageShouldContainArecordWith(final String firstname, final String lastname) {
+        logger.info(String.format("============ Then The individual list should contain '%s' '%s' ============",
+                firstname, lastname));
         objectListPage = pageTransporter.navigateToObjectListPage("Individual");
-        Assert.assertTrue(objectListPage.isThereRecordWithName(firstname.concat(" ").concat(lastname)));
+        softAssert.assertTrue(objectListPage.isThereRecordWithName(firstname.concat(" ").concat(lastname)));
+        softAssert.assertAll();
     }
 }
